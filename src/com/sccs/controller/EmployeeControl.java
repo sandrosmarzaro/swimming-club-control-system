@@ -12,6 +12,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,24 +23,30 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class EmployeeControl implements Initializable {
     
     @FXML
-    TableView<Employee> tableView;
+    private TableView<Employee> tableView;
     @FXML
-    TableColumn<Employee, Integer> columnId;
+    private TableColumn<Employee, Integer> columnId;
     @FXML
-    TableColumn<Employee, String> columnCpf;
+    private TableColumn<Employee, String> columnCpf;
     @FXML
-    TableColumn<Employee, String> columnName;
+    private TableColumn<Employee, String> columnName;
     @FXML
-    TextField cpfText;
+    private TextField cpfText;
     @FXML
-    TextField nameText;
+    private TextField nameText;
     @FXML
-    TextField loginText;
+    private TextField loginText;
     @FXML
-    PasswordField passwordText;
+    private PasswordField passwordText;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button updateButton;
+    @FXML
+    private Button addButton;
     
-    ObservableList<Employee> observableList;
-    List<Employee> employeeList;
+    private ObservableList<Employee> observableList;
+    private List<Employee> employeeList;
     
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();
@@ -46,6 +54,7 @@ public class EmployeeControl implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         EmployeeDAO.setConnection(connection);
         loadTableView();
         
@@ -67,17 +76,63 @@ public class EmployeeControl implements Initializable {
     
     @FXML
     public void selectEmployee(Employee employee) {
+        
         if (employee != null) {
             cpfText.setText(employee.getCpf());
             nameText.setText(employee.getName());
             loginText.setText(employee.getLogin());
-            passwordText.setText(employee.getPassword());
+            passwordText.setText("");
         }
         else {
             cpfText.setText("");
             nameText.setText("");
             loginText.setText("");
             passwordText.setText("");
+        }
+    }
+    
+    @FXML
+    public void hadleClickAdd() {
+        
+        if (isValidInput()) {
+            Employee employee = new Employee(
+                cpfText.getText(),
+                nameText.getText(),
+                loginText.getText(),
+                passwordText.getText()
+            );
+            employeeDAO.insert(employee);
+            loadTableView();
+        }
+    }
+    
+    @FXML
+    public Boolean isValidInput() {
+        
+        String errorMessage = "";
+        if (nameText.getText().isEmpty() || nameText.getText() == null) {
+            errorMessage += "Invalid Name\n";
+        }
+        if (cpfText.getText().isEmpty() || cpfText.getText() == null) {
+            errorMessage += "Invalid CPF\n";
+        }
+        if (loginText.getText().isEmpty() || loginText.getText() == null) {
+            errorMessage += "Invalid Login\n";
+        }
+        if (passwordText.getText().isEmpty() || passwordText.getText() == null) {
+            errorMessage += "Invalid Password\n";
+        }
+        
+        if (errorMessage.isEmpty()) {
+            return true;
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Adding");
+            alert.setHeaderText("Invalid Fields!");
+            alert.setContentText("Enter all required fields to add an employee...\n" + errorMessage);
+            alert.showAndWait();
+            return false;
         }
     }
 }

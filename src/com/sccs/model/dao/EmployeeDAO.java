@@ -24,7 +24,8 @@ public class EmployeeDAO extends DataAcessObject {
             statement.setString(1, employee.getCpf());
             statement.setString(2, employee.getName());
             statement.setString(3, employee.getLogin());
-            statement.setString(4, employee.getPassword());
+            String encryptedPassword = Encryptor.encryptPassword(employee.getPassword());
+            statement.setString(4, encryptedPassword);
             statement.execute();
             return true;
         }
