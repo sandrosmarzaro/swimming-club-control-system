@@ -50,7 +50,6 @@ public class EmployeeControl implements Initializable {
     
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();
-    private final EmployeeDAO employeeDAO = new EmployeeDAO();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -69,7 +68,7 @@ public class EmployeeControl implements Initializable {
         columnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         
-        employeeList = employeeDAO.list();
+        employeeList = EmployeeDAO.list();
         observableList = FXCollections.observableArrayList(employeeList);
         tableView.setItems(observableList);
     }
@@ -92,52 +91,13 @@ public class EmployeeControl implements Initializable {
     }
     
     @FXML
-    public void hadleClickAdd() {
-        
-        if (isValidInput()) {
-            Employee employee = new Employee(
-                cpfText.getText(),
-                nameText.getText(),
-                loginText.getText(),
-                passwordText.getText()
-            );
-            employeeDAO.insert(employee);
-            loadTableView();
-        }
+    public void noSelectedItemAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Employee not selected!");
+        alert.setContentText("Choose a valid employee from the list...");
+        alert.showAndWait();
     }
-    
-    @FXML 
-    public void handleClickDelete() {
-        
-        Employee employee = tableView.getSelectionModel().getSelectedItem();
-        if (employee != null) {
-            employeeDAO.delete(employee);
-            loadTableView();
-        }
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error when Deleting");
-            alert.setHeaderText("Employee not selected!");
-            alert.setContentText("Choose a valid employee from the list to delete him...");
-            alert.showAndWait();
-        }
-    }
-    
-    @FXML
-    public void handleClickUpdate() {
-        
-        if (isValidInput()) {
-            Employee employee = new Employee(
-                cpfText.getText(),
-                nameText.getText(),
-                loginText.getText(),
-                passwordText.getText()
-            );
-            employeeDAO.update(employee);
-            loadTableView();
-        }
-    }
-    
     
     @FXML
     public Boolean isValidInput() {
@@ -166,6 +126,56 @@ public class EmployeeControl implements Initializable {
             alert.setContentText("Enter all required fields to add an employee...\n" + errorMessage);
             alert.showAndWait();
             return false;
+        }
+    }
+    
+    @FXML
+    public void hadleClickAdd() {
+        
+        if (isValidInput()) {
+            Employee employee = new Employee(
+                cpfText.getText(),
+                nameText.getText(),
+                loginText.getText(),
+                passwordText.getText()
+            );
+            EmployeeDAO.insert(employee);
+            loadTableView();
+        }
+    }
+    
+    @FXML
+    public void handleClickUpdate() {
+        
+        Employee selectedEmployee = tableView.getSelectionModel().getSelectedItem();
+        if (isValidInput()) {
+            if (selectedEmployee != null) {
+                Employee employee = new Employee(
+                    selectedEmployee.getId(),
+                    cpfText.getText(),
+                    nameText.getText(),
+                    loginText.getText(),
+                    passwordText.getText()
+                );
+                EmployeeDAO.update(employee);
+                loadTableView();
+            }
+            else {
+                
+            }
+        }
+    }
+    
+    @FXML 
+    public void handleClickDelete() {
+        
+        Employee employee = tableView.getSelectionModel().getSelectedItem();
+        if (employee != null) {
+            EmployeeDAO.delete(employee);
+            loadTableView();
+        }
+        else {
+           noSelectedItemAlert();
         }
     }
 }

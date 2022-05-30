@@ -20,11 +20,11 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="deleteButton" layoutX="102.0" layoutY="428.0" mnemonicParsing="false" onAction="#handleClickDelete" text="Delete" />
-      <Button fx:id="updateButton" layoutX="184.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleClickUpdate" text="Update" />
+      <Button fx:id="deleteButton" layoutX="102.0" layoutY="428.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="30.0" prefWidth="65.0" text="Delete" />
+      <Button fx:id="updateButton" layoutX="184.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleClickUpdate" prefHeight="30.0" prefWidth="65.0" text="Update" />
       <TextField fx:id="cpfText" layoutX="39.0" layoutY="318.0" promptText="CPF" />
       <Label layoutX="39.0" layoutY="301.0" text="CPF" />
-      <Button fx:id="addButton" layoutX="263.0" layoutY="427.0" mnemonicParsing="false" onAction="#hadleClickAdd" prefHeight="25.0" prefWidth="55.0" text="Add" />
+      <Button fx:id="addButton" layoutX="263.0" layoutY="427.0" mnemonicParsing="false" onAction="#hadleClickAdd" prefHeight="30.0" prefWidth="65.0" text="Add" />
       <TextField fx:id="nameText" layoutX="39.0" layoutY="374.0" promptText="Name" />
       <Label layoutX="41.0" layoutY="357.0" text="Name" />
       <TextField fx:id="loginText" layoutX="262.0" layoutY="317.0" promptText="Login" />

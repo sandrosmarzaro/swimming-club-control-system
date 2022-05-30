@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class EmployeeDAO extends DataAcessObject {
 
-    public boolean insert(Employee employee) {
+    public static boolean insert(Employee employee) {
         
         String sql = "INSERT INTO employee(" +
                     "employeeCpf, employeeName, employeeLogin, employeePassword) " +
@@ -35,16 +35,16 @@ public class EmployeeDAO extends DataAcessObject {
         }
     }
 
-    public boolean update(Employee employee) {
+    public static boolean update(Employee employee) {
         
         String sql = "UPDATE employee SET employeeCpf=?, employeeName=?, "
-                + " employeeLogin=? WHERE employeeCpf=?";
+                + "employeeLogin=? WHERE employeeId=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, employee.getCpf());
             statement.setString(2, employee.getName());
-            statement.setString(3, employee.getCpf());
-            statement.setString(4, employee.getLogin());
+            statement.setString(3, employee.getLogin());
+            statement.setInt(4, employee.getId());
             statement.execute();
             return true;
         }
@@ -54,7 +54,7 @@ public class EmployeeDAO extends DataAcessObject {
         }
     }
 
-    public boolean delete(Employee employee) {
+    public static boolean delete(Employee employee) {
         
         String sql = "DELETE FROM employee WHERE employeeCpf=?";
         try {
@@ -69,7 +69,7 @@ public class EmployeeDAO extends DataAcessObject {
         }
     }
 
-    public List<Employee> list() {
+    public static List<Employee> list() {
         
         String sql = "SELECT * FROM employee";
         List<Employee> employeeList = new ArrayList<>();
@@ -94,7 +94,7 @@ public class EmployeeDAO extends DataAcessObject {
         return employeeList;
     }
 
-    public Employee search(String cpf) {
+    public static Employee search(String cpf) {
         
         String sql = "SELECT * FROM employee WHERE employeeCpf=?";
         try {

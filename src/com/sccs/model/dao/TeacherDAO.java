@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class TeacherDAO extends DataAcessObject {
 
-    public boolean insert(Teacher teacher) {
+    public static boolean insert(Teacher teacher) {
 
         String sql = "INSERT INTO teacher(teacherCpf, teacherName) VALUES(?, ?)";
         try {
@@ -27,14 +27,14 @@ public class TeacherDAO extends DataAcessObject {
         }
     }
 
-    public boolean update(Teacher teacher) {
+    public static boolean update(Teacher teacher) {
 
-        String sql = "UPDATE teacher SET teacherCpf=?, teacherName=? WHERE teacherCpf=?";
+        String sql = "UPDATE teacher SET teacherCpf=?, teacherName=? WHERE teacherId=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, teacher.getCpf());
             statement.setString(2, teacher.getName());
-            statement.setString(3, teacher.getCpf());
+            statement.setInt(3, teacher.getId());
             statement.execute();
             return true;
         }
@@ -44,7 +44,7 @@ public class TeacherDAO extends DataAcessObject {
         }
     }
 
-    public boolean delete(Teacher teacher) {
+    public static boolean delete(Teacher teacher) {
 
         String sql = "DELETE FROM teacher WHERE teacherCpf=?";
         try {
@@ -59,7 +59,7 @@ public class TeacherDAO extends DataAcessObject {
         }
     }
 
-    public List<Teacher> list() {
+    public static List<Teacher> list() {
 
         String sql = "SELECT * FROM teacher";
         List<Teacher> teacherList = new ArrayList<>();
@@ -82,7 +82,7 @@ public class TeacherDAO extends DataAcessObject {
         return teacherList;
     }
 
-    public Teacher search(String cpf) {
+    public static Teacher search(String cpf) {
 
         String sql = "SELECT * FROM teacher WHERE teacherCpf=?";
         try {

@@ -12,21 +12,21 @@ import javafx.scene.layout.AnchorPane;
 public class AppControl implements Initializable {
 
     @FXML
-    Button enrollButton;
+    private Button enrollButton;
     @FXML
-    Button studentButton;
+    private Button studentButton;
     @FXML
-    Button teacherButton;
+    private Button teacherButton;
     @FXML
-    Button poolButton;
+    private Button poolButton;
     @FXML
-    Button employeeButton;
+    private Button employeeButton;
     @FXML
-    Button graphicButton;
+    private Button graphicButton;
     @FXML
-    Button reportButton;
+    private Button reportButton;
     @FXML
-    AnchorPane rightAnchorPane;
+    private AnchorPane rightAnchorPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -39,4 +39,15 @@ public class AppControl implements Initializable {
         rightAnchorPane.getChildren().setAll(anchorPaneEmployee);
     }
     
+    @FXML
+    public void handleClickTeacher() throws IOException {
+        AnchorPane anchorPaneEmployee = (AnchorPane) FXMLLoader.load(getClass().getResource("/com/sccs/view/TeacherView.fxml"));
+        rightAnchorPane.getChildren().setAll(anchorPaneEmployee);
+    }
+    
+    @FXML
+    public void handleClickStudent() throws IOException {
+        AnchorPane anchorPaneEmployee = (AnchorPane) FXMLLoader.load(getClass().getResource("/com/sccs/view/StudentView.fxml"));
+        rightAnchorPane.getChildren().setAll(anchorPaneEmployee);
+    }
 }
