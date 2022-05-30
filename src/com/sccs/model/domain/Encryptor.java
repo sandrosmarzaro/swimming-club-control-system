@@ -17,6 +17,6 @@ public class Encryptor {
         ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
         passwordEncryptor.setAlgorithm("md5");
         passwordEncryptor.setPlainDigest(true);
-        return passwordEncryptor.checkPassword(encryptedPassword, password);
+        return passwordEncryptor.checkPassword(password, encryptedPassword);
     }
 }

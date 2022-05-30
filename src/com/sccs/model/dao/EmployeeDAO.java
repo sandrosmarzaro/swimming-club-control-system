@@ -117,7 +117,7 @@ public class EmployeeDAO extends DataAcessObject {
         return null;
     }
     
-    public Boolean signIn(String login, String password) {
+    public static Boolean signIn(String login, String password) {
         String sql = "SELECT * FROM employee WHERE employeeLogin=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
@@ -131,10 +131,7 @@ public class EmployeeDAO extends DataAcessObject {
                     resultSet.getString("employeeLogin"),
                     resultSet.getString("employeePassword")
                 );
-                if (Encryptor.isCorrectPassword(password, employee.getPassword())) {
-                    return true;
-                }
-                return false;
+                return Encryptor.isCorrectPassword(password, employee.getPassword());
             }
             return false;
         }

@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 public class LoginControl implements Initializable {
     
     @FXML
-    TextField loginLabel;
+    TextField loginField;
     @FXML
     PasswordField passwordField;
     @FXML
@@ -27,7 +27,6 @@ public class LoginControl implements Initializable {
     
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();
-    private final EmployeeDAO employeeDAO = new EmployeeDAO();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -36,10 +35,10 @@ public class LoginControl implements Initializable {
     
     @FXML
     public void handleClickSignIn() throws IOException {
-        String login = loginLabel.getText();
+        String login = loginField.getText();
         String password = passwordField.getText();
-        Boolean isCorrectSignIn = employeeDAO.signIn(login, password);
-        if (isCorrectSignIn) {
+        Boolean isCorrectSignIn = EmployeeDAO.signIn(login, password);
+        if (!isCorrectSignIn) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Logging In");
             alert.setHeaderText("Wrong Login or Password!");
