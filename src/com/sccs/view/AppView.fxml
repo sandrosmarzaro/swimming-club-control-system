@@ -7,21 +7,21 @@
 <?import javafx.scene.layout.HBox?>
 
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.AppControl">
    <children>
       <AnchorPane prefHeight="640.0" prefWidth="192.0">
          <children>
-            <Button layoutX="58.0" layoutY="81.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Enroll" />
-            <Button layoutX="58.0" layoutY="135.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Student" />
-            <Button layoutX="58.0" layoutY="192.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Teacher" />
-            <Button layoutX="58.0" layoutY="249.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Poll" />
-            <Button layoutX="58.0" layoutY="307.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Employee" />
+            <Button fx:id="enrollButton" layoutX="58.0" layoutY="81.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Enroll" />
+            <Button fx:id="studentButton" layoutX="58.0" layoutY="135.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Student" />
+            <Button fx:id="teacherButton" layoutX="58.0" layoutY="192.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Teacher" />
+            <Button fx:id="poolButton" layoutX="58.0" layoutY="249.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Poll" />
+            <Button fx:id="employeeButton" layoutX="58.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleClickEmployee" prefHeight="35.0" prefWidth="150.0" text="Employee" />
             <Label layoutX="85.0" layoutY="39.0" text="employeeName" />
-            <Button layoutX="58.0" layoutY="362.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Graphic" />
-            <Button layoutX="59.0" layoutY="413.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Report" />
+            <Button fx:id="graphicButton" layoutX="58.0" layoutY="362.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Graphic" />
+            <Button fx:id="reportButton" layoutX="59.0" layoutY="413.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Report" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="640.0" prefWidth="482.0">
+      <AnchorPane fx:id="rightAnchorPane" prefHeight="640.0" prefWidth="482.0">
          <children>
             <Separator layoutX="-3.0" layoutY="-9.0" orientation="VERTICAL" prefHeight="489.0" prefWidth="25.0" />
          </children>

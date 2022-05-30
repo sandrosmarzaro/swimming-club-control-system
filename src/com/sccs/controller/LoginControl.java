@@ -35,7 +35,7 @@ public class LoginControl implements Initializable {
     }
     
     @FXML
-    public void handleSignIn() throws IOException {
+    public void handleClickSignIn() throws IOException {
         String login = loginLabel.getText();
         String password = passwordField.getText();
         Boolean isCorrectSignIn = employeeDAO.signIn(login, password);
