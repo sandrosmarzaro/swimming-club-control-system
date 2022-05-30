@@ -12,7 +12,7 @@
     <jar href="lib/jasypt-1.9.0.jar" size="125643" download="eager" />
     <jar href="lib/lombok-1.18.24.jar" size="1972167" download="eager" />
     <jar href="lib/postgresql-42.3.6.jar" size="1041072" download="eager" />
-    <jar href="sccs.jar" size="33033" download="eager" />
+    <jar href="sccs.jar" size="33256" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="sccs" >
     <param name="requiredFXVersion" value="8.0+"/>

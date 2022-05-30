@@ -20,7 +20,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="deleteButton" layoutX="102.0" layoutY="428.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="deleteButton" layoutX="102.0" layoutY="428.0" mnemonicParsing="false" onAction="#handleClikDelete" text="Delete" />
       <Button fx:id="updateButton" layoutX="184.0" layoutY="427.0" mnemonicParsing="false" text="Update" />
       <TextField fx:id="cpfText" layoutX="39.0" layoutY="318.0" promptText="CPF" />
       <Label layoutX="39.0" layoutY="301.0" text="CPF" />

@@ -106,6 +106,22 @@ public class EmployeeControl implements Initializable {
         }
     }
     
+    @FXML void handleClikDelete() {
+        
+        Employee employee = tableView.getSelectionModel().getSelectedItem();
+        if (employee != null) {
+            employeeDAO.delete(employee);
+            loadTableView();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error when Deleting");
+            alert.setHeaderText("Employee not selected!");
+            alert.setContentText("Choose a valid employee from the list to delete him...");
+            alert.showAndWait();
+        }
+    }
+    
     @FXML
     public Boolean isValidInput() {
         
