@@ -106,7 +106,8 @@ public class EmployeeControl implements Initializable {
         }
     }
     
-    @FXML void handleClikDelete() {
+    @FXML 
+    public void handleClickDelete() {
         
         Employee employee = tableView.getSelectionModel().getSelectedItem();
         if (employee != null) {
@@ -121,6 +122,22 @@ public class EmployeeControl implements Initializable {
             alert.showAndWait();
         }
     }
+    
+    @FXML
+    public void handleClickUpdate() {
+        
+        if (isValidInput()) {
+            Employee employee = new Employee(
+                cpfText.getText(),
+                nameText.getText(),
+                loginText.getText(),
+                passwordText.getText()
+            );
+            employeeDAO.update(employee);
+            loadTableView();
+        }
+    }
+    
     
     @FXML
     public Boolean isValidInput() {

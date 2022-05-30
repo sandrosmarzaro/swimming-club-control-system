@@ -37,12 +37,14 @@ public class EmployeeDAO extends DataAcessObject {
 
     public boolean update(Employee employee) {
         
-        String sql = "UPDATE employee SET employeeCpf=?, employeeName=? WHERE employeeCpf=?";
+        String sql = "UPDATE employee SET employeeCpf=?, employeeName=?, "
+                + " employeeLogin=? WHERE employeeCpf=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, employee.getCpf());
             statement.setString(2, employee.getName());
             statement.setString(3, employee.getCpf());
+            statement.setString(4, employee.getLogin());
             statement.execute();
             return true;
         }
