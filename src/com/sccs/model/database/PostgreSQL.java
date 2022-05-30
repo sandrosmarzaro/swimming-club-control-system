@@ -18,7 +18,7 @@ public final class PostgreSQL implements Database {
 
     @Override
     public Connection connect() {
-        final String url = "jdbc:postgresql://127.0.0.1/scen";
+        final String url = "jdbc:postgresql://127.0.0.1/sccs";
         final String user = "postgres";
         final String password = "postgres";
 

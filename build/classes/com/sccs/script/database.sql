@@ -11,7 +11,7 @@ CREATE TABLE employee (
 	employeeCpf      VARCHAR(11) NOT NULL,
 	employeeName     VARCHAR(45) NOT NULL,
 	employeeLogin    VARCHAR(45) NOT NULL,
-	employeePassword TEXT		 NOT NULL,
+	employeePassword TEXT        NOT NULL,
 	CONSTRAINT pk_employee
 		PRIMARY KEY (employeeId),
 	CONSTRAINT un_employee_cpf
@@ -132,11 +132,11 @@ INSERT INTO student (studentCpf, studentName, age) VALUES (
 );
 
 INSERT INTO swimmingPool (
-	pollName,
+	poolName,
 	averageAge,
 	maxCapacity,
 	lanesNumber,
-	pollWidth,
+	poolWidth,
 	poolLength,
 	poolDepth
 ) VALUES (
