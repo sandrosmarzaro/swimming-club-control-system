@@ -132,11 +132,11 @@ INSERT INTO student (studentCpf, studentName, age) VALUES (
 );
 
 INSERT INTO swimmingPool (
-	pollName,
+	poolName,
 	averageAge,
 	maxCapacity,
 	lanesNumber,
-	pollWidth,
+	poolWidth,
 	poolLength,
 	poolDepth
 ) VALUES (
