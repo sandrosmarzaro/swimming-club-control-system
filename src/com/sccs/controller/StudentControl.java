@@ -1,11 +1,12 @@
 package com.sccs.controller;
 
-import com.sccs.model.dao.TeacherDAO;
+import com.sccs.model.dao.StudentDAO;
 import com.sccs.model.database.Database;
 import com.sccs.model.database.SingletonDatabase;
-import com.sccs.model.domain.Teacher;
+import com.sccs.model.domain.Student;
 import java.net.URL;
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -14,34 +15,39 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class TeacherControl implements Initializable {
+public class StudentControl implements Initializable {
     
     @FXML
-    private TableView<Teacher> tableView;
+    private TableView<Student> table;
     @FXML
-    private TableColumn<Teacher, Integer> idColumn;
+    private TableColumn<Student, Integer> idColumn;
     @FXML
-    private TableColumn<Teacher, String> cpfColumn;
+    private TableColumn<Student, String> cpfColumn;
     @FXML
-    private TableColumn<Teacher, String> nameColumn;
+    private TableColumn<Student, String> nameColumn;
+    @FXML
+    private TableColumn<Student, LocalDate> ageColumn;
     @FXML
     private TextField cpfField;
     @FXML
     private TextField nameField;
     @FXML
-    private Button deleteButton;
+    private DatePicker ageDate;
+    @FXML
+    private Button addButton;
     @FXML
     private Button updateButton;
     @FXML
-    private Button addButton;
+    private Button deleteButton;
     
-    private ObservableList<Teacher> observableList;
-    private List<Teacher> teacherList;
+    private ObservableList<Student> observableList;
+    private List<Student> studentsList;
     
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();
@@ -49,35 +55,38 @@ public class TeacherControl implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        TeacherDAO.setConnection(connection);
-        loadTableView();
+        StudentDAO.setConnection(connection);
+        loadTable();
         
-        tableView.getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> selectTeacher(newValue));
-    }
-
+        table.getSelectionModel().selectedItemProperty().addListener(
+            (observable, oldValue, newValue) -> selectStudent(newValue));
+    }    
+    
     @FXML
-    public void loadTableView() {
+    public void loadTable() {
         
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         cpfColumn.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         
-        teacherList = TeacherDAO.list();
-        observableList = FXCollections.observableArrayList(teacherList);
-        tableView.setItems(observableList);
+        studentsList = StudentDAO.list();
+        observableList = FXCollections.observableArrayList(studentsList);
+        table.setItems(observableList);
     }
     
     @FXML
-    public void selectTeacher(Teacher teacher) {
+    public void selectStudent(Student student) {
         
-        if (teacher != null) {
-            cpfField.setText(teacher.getCpf());
-            nameField.setText(teacher.getName());
+        if (student != null) {
+            cpfField.setText(student.getCpf());
+            nameField.setText(student.getName());
+            ageDate.setValue(student.getAge());
         }
         else {
             cpfField.setText("");
             nameField.setText("");
+            ageDate.setValue(LocalDate.now());
         }
     }
     
@@ -86,8 +95,8 @@ public class TeacherControl implements Initializable {
         
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
-        alert.setHeaderText("Teacher not selected!");
-        alert.setContentText("Choose a valid teacher from the list...");
+        alert.setHeaderText("Student not selected!");
+        alert.setContentText("Choose a valid student from the list...");
         alert.showAndWait();
     }
     
@@ -102,6 +111,10 @@ public class TeacherControl implements Initializable {
             errorMessage += "Invalid CPF\n";
         }
         
+        if (ageDate.getValue() == null) {
+            errorMessage += "Invalid Date\n";
+        }
+        
         if (errorMessage.isEmpty()) {
             return true;
         }
@@ -109,7 +122,7 @@ public class TeacherControl implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Adding");
             alert.setHeaderText("Invalid Fields!");
-            alert.setContentText("Enter all required fields to add an teacher...\n" + errorMessage);
+            alert.setContentText("Enter all required fields to add an student...\n" + errorMessage);
             alert.showAndWait();
             return false;
         }
@@ -118,29 +131,31 @@ public class TeacherControl implements Initializable {
     @FXML
     public void handleClickAdd() {
         
-        if (isValidInput()) {
-            Teacher teacher = new Teacher(
+        if(isValidInput()) {
+            Student student = new Student (
                 cpfField.getText(),
-                nameField.getText()
+                nameField.getText(),
+                ageDate.getValue()
             );
-            TeacherDAO.insert(teacher);
-            loadTableView();
+            StudentDAO.insert(student);
+            loadTable();
         }
     }
     
     @FXML
     public void handleClickUpdate() {
         
-        Teacher selectedTeacher = tableView.getSelectionModel().getSelectedItem();
+        Student selectedStudent = table.getSelectionModel().getSelectedItem();
         if (isValidInput()) {
-            if(selectedTeacher != null) {
-                Teacher teacher = new Teacher(
-                    selectedTeacher.getId(),
+            if (selectedStudent != null) {
+                Student student = new Student (
+                    selectedStudent.getId(),
                     cpfField.getText(),
-                    nameField.getText()
+                    nameField.getText(),
+                    ageDate.getValue()
                 );
-                TeacherDAO.update(teacher);
-                loadTableView();
+                StudentDAO.update(student);
+                loadTable();
             }
             else {
                 noSelectedItemAlert();
@@ -151,10 +166,10 @@ public class TeacherControl implements Initializable {
     @FXML
     public void handleClickDelete() {
         
-        Teacher teacher = tableView.getSelectionModel().getSelectedItem();
-        if (teacher != null) {
-            TeacherDAO.delete(teacher);
-            loadTableView();
+        Student student = table.getSelectionModel().getSelectedItem();
+        if (student != null) {
+            StudentDAO.delete(student);
+            loadTable();
         }
         else {
             noSelectedItemAlert();

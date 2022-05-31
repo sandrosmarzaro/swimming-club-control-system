@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class StudentDAO extends DataAcessObject {
 
-    public boolean insert(Student student) {
+    public static boolean insert(Student student) {
 
         String sql = "INSERT INTO student(studentCpf, studentName, age) VALUES(?, ?, ?)";
         try {
@@ -29,15 +29,15 @@ public class StudentDAO extends DataAcessObject {
         }
     }
 
-    public boolean update(Student student) {
+    public static boolean update(Student student) {
 
-        String sql = "UPDATE student SET studentCpf=?, studentName=?, age=? WHERE studentCpf=?";
+        String sql = "UPDATE student SET studentCpf=?, studentName=?, age=? WHERE studentId=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, student.getCpf());
             statement.setString(2, student.getName());
             statement.setDate(3, Date.valueOf(student.getAge()));
-            statement.setString(4, student.getCpf());
+            statement.setInt(4, student.getId());
             statement.execute();
             return true;
         }
@@ -47,7 +47,7 @@ public class StudentDAO extends DataAcessObject {
         }
     }
 
-    public boolean delete(Student student) {
+    public static boolean delete(Student student) {
 
         String sql = "DELETE FROM student WHERE studentCpf=?";
         try {
@@ -62,7 +62,7 @@ public class StudentDAO extends DataAcessObject {
         }
     }
 
-    public List<Student> list() {
+    public static List<Student> list() {
 
         String sql = "SELECT * FROM student";
         List<Student> studentList = new ArrayList<>();
@@ -86,7 +86,7 @@ public class StudentDAO extends DataAcessObject {
         return studentList;
     }
 
-    public Student search(String cpf) {
+    public static Student search(String cpf) {
 
         String sql = "SELECT * FROM student WHERE studentCpf=?";
         try {

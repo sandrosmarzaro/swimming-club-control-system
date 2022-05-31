@@ -11,7 +11,7 @@
       <AnchorPane prefHeight="640.0" prefWidth="192.0">
          <children>
             <Button fx:id="enrollButton" layoutX="58.0" layoutY="81.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Enroll" />
-            <Button fx:id="studentButton" layoutX="58.0" layoutY="135.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Student" />
+            <Button fx:id="studentButton" layoutX="58.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleClickStudent" prefHeight="35.0" prefWidth="150.0" text="Student" />
             <Button fx:id="teacherButton" layoutX="58.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleClickTeacher" prefHeight="35.0" prefWidth="150.0" text="Teacher" />
             <Button fx:id="poolButton" layoutX="58.0" layoutY="249.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Poll" />
             <Button fx:id="employeeButton" layoutX="58.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleClickEmployee" prefHeight="35.0" prefWidth="150.0" text="Employee" />

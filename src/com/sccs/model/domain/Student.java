@@ -11,10 +11,17 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 public class Student extends Person implements Serializable {
+    
     private LocalDate age;
 
     public Student(Integer id, String cpf, String name, LocalDate age) {
         super(id, cpf, name);
+        this.age = age;
+    }
+    
+    public Student(String cpf, String name, LocalDate age) {
+        this.cpf = cpf;
+        this.name = name;
         this.age = age;
     }
 }
