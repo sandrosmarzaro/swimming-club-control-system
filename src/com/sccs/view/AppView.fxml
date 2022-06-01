@@ -10,14 +10,15 @@
    <children>
       <AnchorPane prefHeight="640.0" prefWidth="192.0">
          <children>
-            <Button fx:id="enrollButton" layoutX="58.0" layoutY="81.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Enroll" />
-            <Button fx:id="studentButton" layoutX="58.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleClickStudent" prefHeight="35.0" prefWidth="150.0" text="Student" />
-            <Button fx:id="teacherButton" layoutX="58.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleClickTeacher" prefHeight="35.0" prefWidth="150.0" text="Teacher" />
-            <Button fx:id="poolButton" layoutX="58.0" layoutY="249.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Poll" />
-            <Button fx:id="employeeButton" layoutX="58.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleClickEmployee" prefHeight="35.0" prefWidth="150.0" text="Employee" />
-            <Label fx:id="nameLabel" layoutX="85.0" layoutY="39.0" text="employeeName" />
-            <Button fx:id="graphicButton" layoutX="58.0" layoutY="362.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Graphic" />
-            <Button fx:id="reportButton" layoutX="59.0" layoutY="413.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Report" />
+            <Button fx:id="enrollButton" layoutX="59.0" layoutY="69.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Enroll" />
+            <Button fx:id="studentButton" layoutX="59.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleClickStudent" prefHeight="35.0" prefWidth="150.0" text="Student" />
+            <Button fx:id="teacherButton" layoutX="59.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleClickTeacher" prefHeight="35.0" prefWidth="150.0" text="Teacher" />
+            <Button fx:id="poolButton" layoutX="59.0" layoutY="278.0" mnemonicParsing="false" onAction="#handleClickPool" prefHeight="35.0" prefWidth="150.0" text="Poll" />
+            <Button fx:id="employeeButton" layoutX="59.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleClickEmployee" prefHeight="35.0" prefWidth="150.0" text="Employee" />
+            <Label fx:id="nameLabel" layoutX="89.0" layoutY="29.0" text="employeeName" />
+            <Button fx:id="graphicButton" layoutX="59.0" layoutY="381.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Graphic" />
+            <Button fx:id="reportButton" layoutX="59.0" layoutY="430.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Report" />
+            <Button fx:id="classButton" layoutX="59.0" layoutY="120.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Class" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="rightAnchorPane" prefHeight="640.0" prefWidth="482.0">
