@@ -94,13 +94,36 @@ public class EmployeeDAO extends DataAcessObject {
         return employeeList;
     }
 
-    public static Employee search(String cpf) {
+    public static Employee cpfSearch(String cpf) {
         
         String sql = "SELECT * FROM employee WHERE employeeCpf=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, cpf);
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new Employee(
+                        resultSet.getInt("employeeId"),
+                        resultSet.getString("employeeCpf"),
+                        resultSet.getString("employeeName"),
+                        resultSet.getString("employeeLogin"),
+                        resultSet.getString("employeePassword")
+                );
+            }
+        }
+        catch (SQLException sqlException) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+        return null;
+    }
+    
+    public static Employee loginSearch(String login) {
+        
+        String sql = "SELECT * FROM employee WHERE employeeLogin=?";
+        try {
+            PreparedStatement statement = connectionDAO.prepareStatement(sql);
+            statement.setString(1, login);
+            ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new Employee(
                         resultSet.getInt("employeeId"),

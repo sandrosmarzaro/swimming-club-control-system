@@ -1,5 +1,6 @@
 package com.sccs.controller;
 
+import com.sccs.model.domain.Employee;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,10 +8,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class AppControl implements Initializable {
-
+    
+    @FXML
+    private Label nameLabel;
     @FXML
     private Button enrollButton;
     @FXML
@@ -30,7 +34,12 @@ public class AppControl implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        setEmployeeName(LoginControl.getLoginEmployee());
+    }
+    
+    @FXML
+    public void setEmployeeName(Employee employee) {
+        nameLabel.setText(employee.getName());
     }
     
     @FXML

@@ -4,6 +4,7 @@ import com.sccs.App;
 import com.sccs.model.dao.EmployeeDAO;
 import com.sccs.model.database.Database;
 import com.sccs.model.database.SingletonDatabase;
+import com.sccs.model.domain.Employee;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -28,9 +29,19 @@ public class LoginControl implements Initializable {
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();
     
+    private static Employee employee = new Employee();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         EmployeeDAO.setConnection(connection);
+    }
+    
+    private static void setEmployee(Employee searchEmployee) {
+        employee = searchEmployee;
+    }
+    
+    public static Employee getLoginEmployee() {
+        return employee;
     }
     
     @FXML
@@ -46,6 +57,7 @@ public class LoginControl implements Initializable {
             alert.showAndWait();
         }
         else {
+            setEmployee(EmployeeDAO.loginSearch(login));
             App.setRoot("view/AppView");
         }
     }

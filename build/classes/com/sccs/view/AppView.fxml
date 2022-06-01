@@ -15,7 +15,7 @@
             <Button fx:id="teacherButton" layoutX="58.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleClickTeacher" prefHeight="35.0" prefWidth="150.0" text="Teacher" />
             <Button fx:id="poolButton" layoutX="58.0" layoutY="249.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Poll" />
             <Button fx:id="employeeButton" layoutX="58.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleClickEmployee" prefHeight="35.0" prefWidth="150.0" text="Employee" />
-            <Label layoutX="85.0" layoutY="39.0" text="employeeName" />
+            <Label fx:id="nameLabel" layoutX="85.0" layoutY="39.0" text="employeeName" />
             <Button fx:id="graphicButton" layoutX="58.0" layoutY="362.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Graphic" />
             <Button fx:id="reportButton" layoutX="59.0" layoutY="413.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Report" />
          </children>
