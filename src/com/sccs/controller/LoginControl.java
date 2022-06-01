@@ -20,11 +20,11 @@ import javafx.scene.control.TextField;
 public class LoginControl implements Initializable {
     
     @FXML
-    TextField loginField;
+    private TextField loginField;
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
-    Button signInButton;
+    private Button signInButton;
     
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();
