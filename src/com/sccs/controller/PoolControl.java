@@ -8,12 +8,15 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -40,11 +43,14 @@ public class PoolControl implements Initializable {
     @FXML
     private TextField nameField;
     @FXML
-    private TextField ageField;
+    private Spinner<Integer> ageSpinner = new Spinner<>();
+    private Integer currentAge;
     @FXML
-    private TextField maxField;
+    private Spinner<Integer> maxSpinner = new Spinner<>();
+    private Integer currentMax;
     @FXML
-    private TextField lanesField;
+    private Spinner<Integer> lanesSpinner = new Spinner<>();
+    private Integer currentLanes;
     @FXML
     private TextField widthField;
     @FXML
@@ -61,6 +67,13 @@ public class PoolControl implements Initializable {
     private ObservableList<SwimmingPool> observableList;
     private List<SwimmingPool> poolList;
     
+    private SpinnerValueFactory<Integer> spinnerFactoryAge = 
+        new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE);
+    private SpinnerValueFactory<Integer> spinnerFactoryMax = 
+        new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE);
+    private SpinnerValueFactory<Integer> spinnerFactoryLanes = 
+        new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE);
+    
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();
     
@@ -69,6 +82,7 @@ public class PoolControl implements Initializable {
         
         SwimmingPoolDAO.setConnection(connection);
         loadTable();
+        loadsSpinners();
         
         table.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> selectPool(newValue));
@@ -91,22 +105,46 @@ public class PoolControl implements Initializable {
     }
     
     @FXML
+    public void loadsSpinners() {
+        
+        spinnerFactoryAge.setValue(0);
+        ageSpinner.setValueFactory(spinnerFactoryAge);
+        spinnerFactoryMax.setValue(1);
+        maxSpinner.setValueFactory(spinnerFactoryMax);
+        spinnerFactoryLanes.setValue(0);
+        lanesSpinner.setValueFactory(spinnerFactoryLanes);
+        
+        ageSpinner.valueProperty().addListener(
+            (ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) -> {
+                currentAge = ageSpinner.getValue();
+        });
+        maxSpinner.valueProperty().addListener(
+            (ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) -> {
+                currentMax = maxSpinner.getValue();
+        });
+        lanesSpinner.valueProperty().addListener(
+            (ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) -> {
+                currentLanes = lanesSpinner.getValue();
+        });
+    }
+    
+    @FXML
     public void selectPool(SwimmingPool pool) {
         
         if (pool != null) {
             nameField.setText(pool.getName());
-            ageField.setText(pool.getAverageAge().toString());
-            maxField.setText(pool.getMaxCapacity().toString());
-            lanesField.setText(pool.getLanesNumber().toString());
+            spinnerFactoryAge.setValue(pool.getAverageAge());
+            spinnerFactoryMax.setValue(pool.getMaxCapacity());
+            spinnerFactoryLanes.setValue(pool.getLanesNumber());
             widthField.setText(pool.getWidth().toString());
             lengthField.setText(pool.getLength().toString());
             depthField.setText(pool.getDepth().toString());
         }
         else {
             nameField.setText("");
-            ageField.setText("");
-            maxField.setText("");
-            lanesField.setText("");
+            spinnerFactoryAge.setValue(0);
+            spinnerFactoryMax.setValue(1);
+            spinnerFactoryLanes.setValue(0);
             widthField.setText("");
             lengthField.setText("");
             depthField.setText("");
@@ -130,13 +168,13 @@ public class PoolControl implements Initializable {
         if (nameField.getText().isEmpty() || nameField.getText() == null) {
             errorMessage += "Invalid Name\n";
         }
-        if (ageField.getText().isEmpty() || ageField.getText() == null) {
+        if (ageSpinner.getValue() == null) {
             errorMessage += "Invalid Age\n";
         }
-        if (maxField.getText().isEmpty() || maxField.getText() == null) {
+        if (maxSpinner.getValue() == null) {
             errorMessage += "Invalid Maximum Capacity\n";
         }
-        if (lanesField.getText().isEmpty() || lanesField.getText() == null) {
+        if (lanesSpinner.getValue() == null) {
             errorMessage += "Invalid Number of Lanes\n";
         }
         if (widthField.getText().isEmpty() || widthField.getText() == null) {
@@ -168,9 +206,9 @@ public class PoolControl implements Initializable {
         if (isValidInput()) {
             SwimmingPool pool = new SwimmingPool(
                 nameField.getText(),
-                Integer.valueOf(ageField.getText()),
-                Integer.valueOf(maxField.getText()),
-                Integer.valueOf(lanesField.getText()),
+                currentAge,
+                currentMax,
+                currentLanes,
                 Double.valueOf(widthField.getText()),
                 Double.valueOf(lengthField.getText()),
                 Double.valueOf(depthField.getText())
@@ -189,9 +227,9 @@ public class PoolControl implements Initializable {
                 SwimmingPool pool = new SwimmingPool(
                     selectedPool.getNumber(),
                     nameField.getText(),
-                    Integer.valueOf(ageField.getText()),
-                    Integer.valueOf(maxField.getText()),
-                    Integer.valueOf(lanesField.getText()),
+                    currentAge,
+                    currentMax,
+                    currentLanes,
                     Double.valueOf(widthField.getText()),
                     Double.valueOf(lengthField.getText()),
                     Double.valueOf(depthField.getText())
