@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class SwimmingPoolDAO extends DataAcessObject {
 
-    public boolean insert(SwimmingPool pool) {
+    public static boolean insert(SwimmingPool pool) {
 
         String sql = "INSERT INTO swimmingPool(poolName, averageAge, maxCapacity," +
                 " lanesNumber, poolWidth, poolLength, poolDepth)" +
@@ -34,10 +34,10 @@ public class SwimmingPoolDAO extends DataAcessObject {
         }
     }
 
-    public boolean update(SwimmingPool pool) {
+    public static boolean update(SwimmingPool pool) {
         String sql = "UPDATE swimmingPool SET " +
                 "poolName=?, averageAge=?, maxCapacity=?, lanesNumber=?, " +
-                "poolWidth=?, poolLength=?, poolDepth=?, WHERE poolNumber=?";
+                "poolWidth=?, poolLength=?, poolDepth=? WHERE poolNumber=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, pool.getName());
@@ -57,7 +57,7 @@ public class SwimmingPoolDAO extends DataAcessObject {
         }
     }
 
-    public boolean delete(SwimmingPool pool) {
+    public static boolean delete(SwimmingPool pool) {
 
         String sql = "DELETE FROM swimmingPool WHERE poolNumber=?";
         try {
@@ -72,7 +72,7 @@ public class SwimmingPoolDAO extends DataAcessObject {
         }
     }
 
-    public List<SwimmingPool> list() {
+    public static List<SwimmingPool> list() {
 
         String sql = "SELECT * FROM swimmingPool";
         List<SwimmingPool> poolList = new ArrayList<>();
@@ -100,7 +100,7 @@ public class SwimmingPoolDAO extends DataAcessObject {
         return poolList;
     }
 
-    public SwimmingPool search(Integer number) {
+    public static SwimmingPool search(Integer number) {
 
         String sql = "SELECT * FROM swimmingPool WHERE poolNumber=?";
         try {
