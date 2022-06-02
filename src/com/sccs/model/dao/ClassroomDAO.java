@@ -15,7 +15,7 @@ public class ClassroomDAO extends DataAcessObject {
     public static boolean insert(Classroom classroom) {
 
         String sql = "INSERT INTO classroom(className, usedPool, enrollmentOpen," +
-                " teacher, dayOfTheWeek) VALUES(?, ?, ?, ?, ?)";
+                " teacher, dayOfTheWeek) VALUES(?, ?, ?, ?, ?::day_of_the_week)";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, classroom.getName());
@@ -34,8 +34,8 @@ public class ClassroomDAO extends DataAcessObject {
 
     public static boolean update(Classroom classroom) {
         String sql = "UPDATE classroom SET " +
-                "classroom(className, usedPool, enrollmentOpen, " +
-                "teacher, dayOfTheWeek) VALUES(?, ?, ?, ?, ?) " +
+                "className=?, usedPool=?, enrollmentOpen=?, " +
+                "teacher=?, dayOfTheWeek=?::day_of_the_week " +
                 "WHERE classroomId=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
@@ -76,7 +76,6 @@ public class ClassroomDAO extends DataAcessObject {
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
-
             while (resultSet.next()) {
                 Classroom classroom = new Classroom(
                         resultSet.getInt("classroomId"),
@@ -101,7 +100,7 @@ public class ClassroomDAO extends DataAcessObject {
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setInt(1, number);
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new Classroom(
                     resultSet.getInt("classroomId"),

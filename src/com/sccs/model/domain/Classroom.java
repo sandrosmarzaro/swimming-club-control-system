@@ -24,4 +24,18 @@ public class Classroom implements Serializable {
     public String toString() {
         return this.name;
     }
+    
+    public Classroom (
+            String name, 
+            Integer poolId, 
+            Boolean enrollmentOpen, 
+            Integer teacherId, 
+            DayOfTheWeek dayOfTheWeek
+        ) {
+            this.name = name;
+            this.poolId = poolId;
+            this.enrollmentOpen = enrollmentOpen;
+            this.teacherId = teacherId;
+            this.dayOfTheWeek = dayOfTheWeek;
+    }
 }

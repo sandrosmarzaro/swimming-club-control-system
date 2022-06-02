@@ -17,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -129,25 +130,116 @@ public class ClassControl implements Initializable {
             nameField.setText(classroom.getName());
             openButton.setSelected(classroom.getEnrollmentOpen());
             
-            SingleSelectionModel<Teacher> singleSelectTeacher = teacherCombo.getSelectionModel();
-            singleSelectTeacher.select(TeacherDAO.search(classroom.getTeacherId()));
-            teacherCombo.setSelectionModel(singleSelectTeacher);
+//            SingleSelectionModel<Teacher> singleSelectTeacher = teacherCombo.getSelectionModel();
+//            singleSelectTeacher.select(TeacherDAO.search(classroom.getTeacherId()));
+//            teacherCombo.setSelectionModel(singleSelectTeacher);
+            teacherCombo.setValue(TeacherDAO.search(classroom.getTeacherId()));
             
-            SingleSelectionModel<SwimmingPool> singleSelectPool = poolCombo.getSelectionModel();
-            singleSelectPool.select(SwimmingPoolDAO.search(classroom.getPoolId()));
-            poolCombo.setSelectionModel(singleSelectPool);
+//            SingleSelectionModel<SwimmingPool> singleSelectPool = poolCombo.getSelectionModel();
+//            singleSelectPool.select(SwimmingPoolDAO.search(classroom.getPoolId()));
+//            poolCombo.setSelectionModel(singleSelectPool);
+            poolCombo.setValue(SwimmingPoolDAO.search(classroom.getPoolId()));
             
-            SingleSelectionModel<DayOfTheWeek> singleSelectDay = dayChoice.getSelectionModel();
-            singleSelectDay.select(classroom.getDayOfTheWeek());
-            dayChoice.setSelectionModel(singleSelectDay);
+//            SingleSelectionModel<DayOfTheWeek> singleSelectDay = dayChoice.getSelectionModel();
+//            singleSelectDay.select(classroom.getDayOfTheWeek());
+//            dayChoice.setSelectionModel(singleSelectDay);
+            dayChoice.setValue(classroom.getDayOfTheWeek());
         }
         else {
             nameField.setText("");
             openButton.setSelected(false);
-            
-            SingleSelectionModel<DayOfTheWeek> singleSelectDay = dayChoice.getSelectionModel();
-            singleSelectDay.select(DayOfTheWeek.SUNDAY);
-            dayChoice.setSelectionModel(singleSelectDay);
+            teacherCombo.setValue(null);
+            poolCombo.setValue(null);
+            dayChoice.setValue(null);
+        }
+    }
+    
+    @FXML
+    public void noSelectedItemAlert() {
+        
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Student not selected!");
+        alert.setContentText("Choose a valid classroom from the list...");
+        alert.showAndWait();
+    }
+    
+    @FXML
+    public Boolean isValidInput() {
+        
+        String errorMessage = "";
+        if (nameField.getText().isEmpty() || nameField.getText() == null) {
+            errorMessage += "Invalid Name\n";
+        }
+        if (teacherCombo.getSelectionModel().getSelectedItem() == null) {
+            errorMessage += "Invalid Teacher\n";
+        }
+        if (poolCombo.getSelectionModel().getSelectedItem() == null) {
+            errorMessage += "Invalid Pool\n";
+        }
+        
+        if (errorMessage.isEmpty()) {
+            return true;
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Adding");
+            alert.setHeaderText("Invalid Fields!");
+            alert.setContentText("Enter all required fields to add an pool...\n" + errorMessage);
+            alert.showAndWait();
+            return false;
+        }
+    }
+    
+    @FXML
+    public void handleClickAdd() {
+        
+        if (isValidInput()) {
+            Classroom classroom = new Classroom(
+                nameField.getText(),
+                poolCombo.getSelectionModel().getSelectedItem().getNumber(),
+                openButton.isSelected(),
+                teacherCombo.getSelectionModel().getSelectedItem().getId(),
+                dayChoice.getSelectionModel().getSelectedItem()
+            );
+            ClassroomDAO.insert(classroom);
+            loadTable();
+        }
+    }
+    
+    @FXML
+    public void handleClickUpdate() {
+        
+        Classroom selectedClassroom = table.getSelectionModel().getSelectedItem();
+        if (isValidInput()) {
+            if (selectedClassroom != null) {
+                Classroom classroom = new Classroom(
+                    selectedClassroom.getId(),
+                    nameField.getText(),
+                    poolCombo.getSelectionModel().getSelectedItem().getNumber(),
+                    openButton.isSelected(),
+                    teacherCombo.getSelectionModel().getSelectedItem().getId(),
+                    dayChoice.getSelectionModel().getSelectedItem()
+                );
+                ClassroomDAO.update(classroom);
+                loadTable();
+            }
+            else {
+                noSelectedItemAlert();
+            }
+        }
+    }
+    
+    @FXML
+    public void handleClickDelete() {
+        
+        Classroom classroom = table.getSelectionModel().getSelectedItem();
+        if (classroom != null) {
+            ClassroomDAO.delete(classroom);
+            loadTable();
+        }
+        else {
+            noSelectedItemAlert();
         }
     }
 }
