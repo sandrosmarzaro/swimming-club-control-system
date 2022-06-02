@@ -106,7 +106,7 @@ public class SwimmingPoolDAO extends DataAcessObject {
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setInt(1, number);
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new SwimmingPool(
                         resultSet.getInt("poolNumber"),

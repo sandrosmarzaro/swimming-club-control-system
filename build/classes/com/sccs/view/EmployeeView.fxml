@@ -8,13 +8,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.EmployeeControl">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.EmployeeControl">
    <children>
       <TableView fx:id="tableView" layoutX="84.0" layoutY="33.0" prefHeight="255.0" prefWidth="255.0">
         <columns>
           <TableColumn fx:id="columnId" prefWidth="35.0" resizable="false" text="ID" />
           <TableColumn fx:id="columnCpf" prefWidth="104.0" resizable="false" text="CPF" />
-            <TableColumn fx:id="columnName" prefWidth="115.0" text="Name" />
+            <TableColumn fx:id="columnName" prefWidth="114.0" text="Name" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -27,9 +27,9 @@
       <Button fx:id="addButton" layoutX="263.0" layoutY="427.0" mnemonicParsing="false" onAction="#hadleClickAdd" prefHeight="30.0" prefWidth="65.0" text="Add" />
       <TextField fx:id="nameText" layoutX="39.0" layoutY="374.0" promptText="Name" />
       <Label layoutX="41.0" layoutY="357.0" text="Name" />
-      <TextField fx:id="loginText" layoutX="262.0" layoutY="317.0" promptText="Login" />
-      <Label layoutX="262.0" layoutY="300.0" text="Login" />
-      <Label layoutX="263.0" layoutY="357.0" text="Password" />
-      <PasswordField fx:id="passwordText" layoutX="262.0" layoutY="374.0" promptText="Password" />
+      <TextField fx:id="loginText" layoutX="243.0" layoutY="317.0" promptText="Login" />
+      <Label layoutX="243.0" layoutY="300.0" text="Login" />
+      <Label layoutX="244.0" layoutY="357.0" text="Password" />
+      <PasswordField fx:id="passwordText" layoutX="243.0" layoutY="374.0" promptText="Password" />
    </children>
 </AnchorPane>

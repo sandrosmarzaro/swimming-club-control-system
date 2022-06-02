@@ -13,7 +13,7 @@
         <columns>
           <TableColumn fx:id="idColumn" editable="false" prefWidth="40.5" text="Id" />
           <TableColumn fx:id="cpfColumn" editable="false" prefWidth="108.0" text="CPF" />
-            <TableColumn fx:id="nameColumn" editable="false" prefWidth="110.0" text="Name" />
+            <TableColumn fx:id="nameColumn" editable="false" prefWidth="107.5" text="Name" />
         </columns>
       </TableView>
       <Button fx:id="deleteButton" layoutX="71.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="30.0" prefWidth="65.0" text="Delete" />

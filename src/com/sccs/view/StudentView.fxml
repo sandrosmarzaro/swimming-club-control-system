@@ -15,7 +15,7 @@
           <TableColumn fx:id="idColumn" prefWidth="40.0" text="Id" />
           <TableColumn fx:id="cpfColumn" prefWidth="100.5" text="CPF" />
             <TableColumn fx:id="nameColumn" prefWidth="116.5" text="Name" />
-            <TableColumn fx:id="ageColumn" text="Age" />
+            <TableColumn fx:id="ageColumn" prefWidth="78.5" text="Age" />
         </columns>
       </TableView>
       <Button fx:id="deleteButton" layoutX="100.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="30.0" prefWidth="65.0" text="Delete" />

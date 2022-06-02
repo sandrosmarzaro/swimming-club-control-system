@@ -82,13 +82,13 @@ public class TeacherDAO extends DataAcessObject {
         return teacherList;
     }
 
-    public static Teacher search(String cpf) {
+    public static Teacher search(Integer id) {
 
-        String sql = "SELECT * FROM teacher WHERE teacherCpf=?";
+        String sql = "SELECT * FROM teacher WHERE teacherId=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setString(1, cpf);
-            ResultSet resultSet = statement.executeQuery(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new Teacher(
                         resultSet.getInt("teacherId"),

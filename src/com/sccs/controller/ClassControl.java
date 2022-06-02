@@ -18,11 +18,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ClassControl implements Initializable {
@@ -40,11 +42,13 @@ public class ClassControl implements Initializable {
     @FXML
     private TextField nameField;
     @FXML
-    private CheckBox openEnrollment;
+    private ToggleButton openButton;
     @FXML
     private ComboBox<Teacher> teacherCombo;
     @FXML
     private ComboBox<SwimmingPool> poolCombo;
+    @FXML 
+    private ChoiceBox<DayOfTheWeek> dayChoice;
     @FXML
     private Button addButton;
     @FXML
@@ -59,6 +63,7 @@ public class ClassControl implements Initializable {
     private List<Classroom> classList;
     private List<Teacher> teacherList;
     private List<SwimmingPool> poolList;
+    private final DayOfTheWeek[] daysArray = DayOfTheWeek.values();
     
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();
@@ -73,6 +78,7 @@ public class ClassControl implements Initializable {
         loadTable();
         loadTeacherCombo();
         loadPoolCombo();
+        loadDayChoice();
     }
     
     @FXML
@@ -86,6 +92,9 @@ public class ClassControl implements Initializable {
         classList = ClassroomDAO.list();
         classObservableList = FXCollections.observableArrayList(classList);
         table.setItems(classObservableList);
+        
+        table.getSelectionModel().selectedItemProperty().addListener(
+            (observable, oldValue, newValue) -> selectClass(newValue));
     }
     
     @FXML
@@ -102,5 +111,43 @@ public class ClassControl implements Initializable {
         poolList = SwimmingPoolDAO.list();
         poolObservableList = FXCollections.observableArrayList(poolList);
         poolCombo.setItems(poolObservableList);
+    }
+    
+    @FXML
+    public void loadDayChoice() {
+        
+        dayChoice.getItems().addAll(daysArray);
+        SingleSelectionModel<DayOfTheWeek> singleSelectDay = dayChoice.getSelectionModel();
+            singleSelectDay.select(DayOfTheWeek.SUNDAY);
+            dayChoice.setSelectionModel(singleSelectDay);
+    }
+    
+    @FXML
+    public void selectClass(Classroom classroom) {
+        
+        if (classroom != null) {
+            nameField.setText(classroom.getName());
+            openButton.setSelected(classroom.getEnrollmentOpen());
+            
+            SingleSelectionModel<Teacher> singleSelectTeacher = teacherCombo.getSelectionModel();
+            singleSelectTeacher.select(TeacherDAO.search(classroom.getTeacherId()));
+            teacherCombo.setSelectionModel(singleSelectTeacher);
+            
+            SingleSelectionModel<SwimmingPool> singleSelectPool = poolCombo.getSelectionModel();
+            singleSelectPool.select(SwimmingPoolDAO.search(classroom.getPoolId()));
+            poolCombo.setSelectionModel(singleSelectPool);
+            
+            SingleSelectionModel<DayOfTheWeek> singleSelectDay = dayChoice.getSelectionModel();
+            singleSelectDay.select(classroom.getDayOfTheWeek());
+            dayChoice.setSelectionModel(singleSelectDay);
+        }
+        else {
+            nameField.setText("");
+            openButton.setSelected(false);
+            
+            SingleSelectionModel<DayOfTheWeek> singleSelectDay = dayChoice.getSelectionModel();
+            singleSelectDay.select(DayOfTheWeek.SUNDAY);
+            dayChoice.setSelectionModel(singleSelectDay);
+        }
     }
 }
