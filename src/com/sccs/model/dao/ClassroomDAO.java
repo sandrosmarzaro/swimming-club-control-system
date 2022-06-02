@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class ClassroomDAO extends DataAcessObject {
 
-    public boolean insert(Classroom classroom) {
+    public static boolean insert(Classroom classroom) {
 
         String sql = "INSERT INTO classroom(className, usedPool, enrollmentOpen," +
                 " teacher, dayOfTheWeek) VALUES(?, ?, ?, ?, ?)";
@@ -32,7 +32,7 @@ public class ClassroomDAO extends DataAcessObject {
         }
     }
 
-    public boolean update(Classroom classroom) {
+    public static boolean update(Classroom classroom) {
         String sql = "UPDATE classroom SET " +
                 "classroom(className, usedPool, enrollmentOpen, " +
                 "teacher, dayOfTheWeek) VALUES(?, ?, ?, ?, ?) " +
@@ -54,7 +54,7 @@ public class ClassroomDAO extends DataAcessObject {
         }
     }
 
-    public boolean delete(Classroom classroom) {
+    public static boolean delete(Classroom classroom) {
 
         String sql = "DELETE FROM classroom WHERE classroomId=?";
         try {
@@ -69,7 +69,7 @@ public class ClassroomDAO extends DataAcessObject {
         }
     }
 
-    public List<Classroom> list() {
+    public static List<Classroom> list() {
 
         String sql = "SELECT * FROM classroom";
         List<Classroom> classList = new ArrayList<>();
@@ -95,7 +95,7 @@ public class ClassroomDAO extends DataAcessObject {
         return classList;
     }
 
-    public Classroom search(Integer number) {
+    public static Classroom search(Integer number) {
 
         String sql = "SELECT * FROM classroom WHERE classroomId=?";
         try {
