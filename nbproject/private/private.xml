@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/sandro/NetBeansProjects/sccs/src/com/sccs/model/dao/SwimmingPoolDAO.java</file>
-            <file>file:/home/sandro/NetBeansProjects/sccs/src/com/sccs/model/dao/ClassroomDAO.java</file>
-            <file>file:/home/sandro/NetBeansProjects/sccs/src/com/sccs/controller/ClassControl.java</file>
-            <file>file:/home/sandro/NetBeansProjects/sccs/src/com/sccs/controller/PoolControl.java</file>
-            <file>file:/home/sandro/NetBeansProjects/sccs/src/com/sccs/model/dao/TeacherDAO.java</file>
-            <file>file:/home/sandro/NetBeansProjects/sccs/src/com/sccs/controller/AppControl.java</file>
+            <file>file:/home/sandro/NetBeansProjects/sccs/src/com/sccs/App.java</file>
         </group>
     </open-files>
 </project-private>

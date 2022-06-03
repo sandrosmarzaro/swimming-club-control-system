@@ -18,6 +18,7 @@ public class App extends Application {
 
         stage.setScene(scene);
         stage.setTitle("Swimming Club Control System");
+        stage.setResizable(false);
         stage.show();
     }
     

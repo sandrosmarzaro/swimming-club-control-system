@@ -44,13 +44,13 @@ public class PoolControl implements Initializable {
     private TextField nameField;
     @FXML
     private Spinner<Integer> ageSpinner = new Spinner<>();
-    private Integer currentAge;
+    private Integer currentAge = 0;
     @FXML
     private Spinner<Integer> maxSpinner = new Spinner<>();
-    private Integer currentMax;
+    private Integer currentMax = 1;
     @FXML
     private Spinner<Integer> lanesSpinner = new Spinner<>();
-    private Integer currentLanes;
+    private Integer currentLanes = 0;
     @FXML
     private TextField widthField;
     @FXML
