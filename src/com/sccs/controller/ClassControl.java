@@ -39,6 +39,8 @@ public class ClassControl implements Initializable {
     @FXML
     private TableColumn<Classroom, Boolean> openColumn;
     @FXML
+    private TableColumn<Classroom, Integer> vacanciesColumn;
+    @FXML
     private TableColumn<Classroom, DayOfTheWeek> dayColumn;
     @FXML
     private TextField nameField;
@@ -88,6 +90,7 @@ public class ClassControl implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         openColumn.setCellValueFactory(new PropertyValueFactory<>("enrollmentOpen"));
+        vacanciesColumn.setCellValueFactory(new PropertyValueFactory<>("vacanciesNumber"));
         dayColumn.setCellValueFactory(new PropertyValueFactory<>("dayOfTheWeek"));
         
         classList = ClassroomDAO.list();
@@ -129,20 +132,8 @@ public class ClassControl implements Initializable {
         if (classroom != null) {
             nameField.setText(classroom.getName());
             openButton.setSelected(classroom.getEnrollmentOpen());
-            
-//            SingleSelectionModel<Teacher> singleSelectTeacher = teacherCombo.getSelectionModel();
-//            singleSelectTeacher.select(TeacherDAO.search(classroom.getTeacherId()));
-//            teacherCombo.setSelectionModel(singleSelectTeacher);
             teacherCombo.setValue(TeacherDAO.search(classroom.getTeacherId()));
-            
-//            SingleSelectionModel<SwimmingPool> singleSelectPool = poolCombo.getSelectionModel();
-//            singleSelectPool.select(SwimmingPoolDAO.search(classroom.getPoolId()));
-//            poolCombo.setSelectionModel(singleSelectPool);
             poolCombo.setValue(SwimmingPoolDAO.search(classroom.getPoolId()));
-            
-//            SingleSelectionModel<DayOfTheWeek> singleSelectDay = dayChoice.getSelectionModel();
-//            singleSelectDay.select(classroom.getDayOfTheWeek());
-//            dayChoice.setSelectionModel(singleSelectDay);
             dayChoice.setValue(classroom.getDayOfTheWeek());
         }
         else {
@@ -198,6 +189,11 @@ public class ClassControl implements Initializable {
             Classroom classroom = new Classroom(
                 nameField.getText(),
                 poolCombo.getSelectionModel().getSelectedItem().getNumber(),
+                SwimmingPoolDAO.search(poolCombo
+                        .getSelectionModel()
+                        .getSelectedItem()
+                        .getNumber())
+                        .getMaxCapacity(),
                 openButton.isSelected(),
                 teacherCombo.getSelectionModel().getSelectedItem().getId(),
                 dayChoice.getSelectionModel().getSelectedItem()
@@ -217,6 +213,11 @@ public class ClassControl implements Initializable {
                     selectedClassroom.getId(),
                     nameField.getText(),
                     poolCombo.getSelectionModel().getSelectedItem().getNumber(),
+                        SwimmingPoolDAO.search(poolCombo
+                        .getSelectionModel()
+                        .getSelectedItem()
+                        .getNumber())
+                        .getMaxCapacity(),
                     openButton.isSelected(),
                     teacherCombo.getSelectionModel().getSelectedItem().getId(),
                     dayChoice.getSelectionModel().getSelectedItem()

@@ -15,9 +15,10 @@
       <TableView fx:id="table" layoutX="28.0" layoutY="35.0" prefHeight="200.0" prefWidth="379.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="37.0" text="ID" />
-          <TableColumn fx:id="nameColumn" prefWidth="180.6666717529297" text="Name" />
-            <TableColumn fx:id="openColumn" prefWidth="71.33332824707031" text="Open" />
-            <TableColumn fx:id="dayColumn" prefWidth="87.66665649414062" text="Day" />
+          <TableColumn fx:id="nameColumn" prefWidth="109.0" text="Name" />
+            <TableColumn fx:id="openColumn" prefWidth="48.0" text="Open" />
+            <TableColumn fx:id="vacanciesColumn" minWidth="0.0" prefWidth="81.0" text="Vacancies" />
+            <TableColumn fx:id="dayColumn" prefWidth="101.66668701171875" text="Day" />
         </columns>
       </TableView>
       <TextField fx:id="nameField" layoutX="31.0" layoutY="266.0" prefHeight="25.0" prefWidth="163.0" promptText="Name" />

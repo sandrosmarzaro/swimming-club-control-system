@@ -14,15 +14,17 @@ public class ClassroomDAO extends DataAcessObject {
 
     public static boolean insert(Classroom classroom) {
 
-        String sql = "INSERT INTO classroom(className, usedPool, enrollmentOpen," +
-                " teacher, dayOfTheWeek) VALUES(?, ?, ?, ?, ?::day_of_the_week)";
+        String sql = "INSERT INTO classroom(className, usedPool, vacanciesNumber, " +
+                "enrollmentOpen, teacher, dayOfTheWeek) " +
+                "VALUES(?, ?, ?, ?, ?, ?::day_of_the_week)";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, classroom.getName());
             statement.setInt(2, classroom.getPoolId());
-            statement.setBoolean(3, classroom.getEnrollmentOpen());
-            statement.setInt(4, classroom.getTeacherId());
-            statement.setString(5, classroom.getDayOfTheWeek().toString());
+            statement.setInt(3, classroom.getVacanciesNumber());
+            statement.setBoolean(4, classroom.getEnrollmentOpen());
+            statement.setInt(5, classroom.getTeacherId());
+            statement.setString(6, classroom.getDayOfTheWeek().toString());
             statement.execute();
             return true;
         }
@@ -81,6 +83,7 @@ public class ClassroomDAO extends DataAcessObject {
                         resultSet.getInt("classroomId"),
                         resultSet.getString("className"),
                         resultSet.getInt("usedPool"),
+                        resultSet.getInt("vacanciesNumber"),
                         resultSet.getBoolean("enrollmentOpen"),
                         resultSet.getInt("teacher"),
                         DayOfTheWeek.valueOf(resultSet.getString("dayOfTheWeek"))
@@ -106,6 +109,7 @@ public class ClassroomDAO extends DataAcessObject {
                     resultSet.getInt("classroomId"),
                     resultSet.getString("className"),
                     resultSet.getInt("usedPool"),
+                    resultSet.getInt("vacanciesNumber"),
                     resultSet.getBoolean("enrollmentOpen"),
                     resultSet.getInt("teacher"),
                     DayOfTheWeek.valueOf(resultSet.getString("dayOfTheWeek"))
@@ -116,5 +120,22 @@ public class ClassroomDAO extends DataAcessObject {
             Logger.getLogger(ClassroomDAO.class.getName()).log(Level.SEVERE, null, sqlException);
         }
         return null;
+    }
+    
+    public static boolean updateVacancies(Integer id) {
+        
+        String sql = "UPDATE classroom SET " +
+            "vacanciesNumber = vacanciesNumber - 1\n" +
+            "WHERE classroomId = ?;";
+        try{
+            PreparedStatement statement = connectionDAO.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+            return true;
+        }
+        catch (SQLException sqlException) {
+            Logger.getLogger(ClassroomDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+        return false;
     }
 }

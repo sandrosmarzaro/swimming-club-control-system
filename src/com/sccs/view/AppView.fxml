@@ -10,7 +10,7 @@
    <children>
       <AnchorPane prefHeight="640.0" prefWidth="192.0">
          <children>
-            <Button fx:id="enrollButton" layoutX="59.0" layoutY="69.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Enroll" />
+            <Button fx:id="enrollButton" layoutX="59.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleClickEnroll" prefHeight="35.0" prefWidth="150.0" text="Enroll" />
             <Button fx:id="classButton" layoutX="59.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleClickClass" prefHeight="35.0" prefWidth="150.0" text="Class" />
             <Button fx:id="studentButton" layoutX="59.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleClickStudent" prefHeight="35.0" prefWidth="150.0" text="Student" />
             <Button fx:id="teacherButton" layoutX="59.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleClickTeacher" prefHeight="35.0" prefWidth="150.0" text="Teacher" />

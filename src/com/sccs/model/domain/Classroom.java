@@ -16,6 +16,7 @@ public class Classroom implements Serializable {
     private Integer id;
     private String name;
     private Integer poolId;
+    private Integer vacanciesNumber;
     private Boolean enrollmentOpen;
     private Integer teacherId;
     private DayOfTheWeek dayOfTheWeek;
@@ -27,13 +28,15 @@ public class Classroom implements Serializable {
     
     public Classroom (
             String name, 
-            Integer poolId, 
+            Integer poolId,
+            Integer vacanciesNumber,
             Boolean enrollmentOpen, 
             Integer teacherId, 
             DayOfTheWeek dayOfTheWeek
         ) {
             this.name = name;
             this.poolId = poolId;
+            this.vacanciesNumber = vacanciesNumber;
             this.enrollmentOpen = enrollmentOpen;
             this.teacherId = teacherId;
             this.dayOfTheWeek = dayOfTheWeek;

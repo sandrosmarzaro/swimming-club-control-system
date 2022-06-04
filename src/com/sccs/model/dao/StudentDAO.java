@@ -14,12 +14,13 @@ public class StudentDAO extends DataAcessObject {
 
     public static boolean insert(Student student) {
 
-        String sql = "INSERT INTO student(studentCpf, studentName, age) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO student(studentCpf, studentName, birthDate, age) VALUES(?, ?, ?, ?)";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, student.getCpf());
             statement.setString(2, student.getName());
-            statement.setDate(3, Date.valueOf(student.getAge()));
+            statement.setDate(3, Date.valueOf(student.getBirthDate()));
+            statement.setInt(4, student.getAge());
             statement.execute();
             return true;
         }
@@ -31,13 +32,14 @@ public class StudentDAO extends DataAcessObject {
 
     public static boolean update(Student student) {
 
-        String sql = "UPDATE student SET studentCpf=?, studentName=?, age=? WHERE studentId=?";
+        String sql = "UPDATE student SET studentCpf=?, studentName=?, birthDate=?, age=? WHERE studentId=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, student.getCpf());
             statement.setString(2, student.getName());
-            statement.setDate(3, Date.valueOf(student.getAge()));
-            statement.setInt(4, student.getId());
+            statement.setDate(3, Date.valueOf(student.getBirthDate()));
+            statement.setInt(4, student.getAge());
+            statement.setInt(5, student.getId());
             statement.execute();
             return true;
         }
@@ -75,7 +77,7 @@ public class StudentDAO extends DataAcessObject {
                         resultSet.getInt("studentId"),
                         resultSet.getString("studentCpf"),
                         resultSet.getString("studentName"),
-                        resultSet.getDate("age").toLocalDate()
+                        resultSet.getDate("birthDate").toLocalDate()
                 );
                 studentList.add(student);
             }
@@ -92,7 +94,7 @@ public class StudentDAO extends DataAcessObject {
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, cpf);
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new Student(
                         resultSet.getInt("studentId"),

@@ -32,13 +32,13 @@ public class StudentControl implements Initializable {
     @FXML
     private TableColumn<Student, String> nameColumn;
     @FXML
-    private TableColumn<Student, LocalDate> ageColumn;
+    private TableColumn<Student, LocalDate> birthColumn;
     @FXML
     private TextField cpfField;
     @FXML
     private TextField nameField;
     @FXML
-    private DatePicker ageDate;
+    private DatePicker birthDate;
     @FXML
     private Button addButton;
     @FXML
@@ -68,7 +68,7 @@ public class StudentControl implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         cpfColumn.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        birthColumn.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
         
         studentsList = StudentDAO.list();
         observableList = FXCollections.observableArrayList(studentsList);
@@ -81,12 +81,12 @@ public class StudentControl implements Initializable {
         if (student != null) {
             cpfField.setText(student.getCpf());
             nameField.setText(student.getName());
-            ageDate.setValue(student.getAge());
+            birthDate.setValue(student.getBirthDate());
         }
         else {
             cpfField.setText("");
             nameField.setText("");
-            ageDate.setValue(LocalDate.now());
+            birthDate.setValue(LocalDate.now());
         }
     }
     
@@ -110,8 +110,7 @@ public class StudentControl implements Initializable {
         if (cpfField.getText().isEmpty() || cpfField.getText() == null) {
             errorMessage += "Invalid CPF\n";
         }
-        
-        if (ageDate.getValue() == null) {
+        if (birthDate.getValue() == null) {
             errorMessage += "Invalid Date\n";
         }
         
@@ -135,7 +134,7 @@ public class StudentControl implements Initializable {
             Student student = new Student (
                 cpfField.getText(),
                 nameField.getText(),
-                ageDate.getValue()
+                birthDate.getValue()
             );
             StudentDAO.insert(student);
             loadTable();
@@ -152,7 +151,7 @@ public class StudentControl implements Initializable {
                     selectedStudent.getId(),
                     cpfField.getText(),
                     nameField.getText(),
-                    ageDate.getValue()
+                    birthDate.getValue()
                 );
                 StudentDAO.update(student);
                 loadTable();

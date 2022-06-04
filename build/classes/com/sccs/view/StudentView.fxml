@@ -15,7 +15,7 @@
           <TableColumn fx:id="idColumn" prefWidth="40.0" text="Id" />
           <TableColumn fx:id="cpfColumn" prefWidth="100.5" text="CPF" />
             <TableColumn fx:id="nameColumn" prefWidth="116.5" text="Name" />
-            <TableColumn fx:id="ageColumn" prefWidth="78.5" text="Age" />
+            <TableColumn fx:id="birthColumn" prefWidth="78.5" text="Birth" />
         </columns>
       </TableView>
       <Button fx:id="deleteButton" layoutX="100.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="30.0" prefWidth="65.0" text="Delete" />
@@ -25,7 +25,7 @@
       <Label layoutX="46.0" layoutY="302.0" text="CPF" />
       <TextField fx:id="nameField" layoutX="223.0" layoutY="318.0" promptText="Name" />
       <Label layoutX="224.0" layoutY="301.0" text="Name" />
-      <Label layoutX="46.0" layoutY="357.0" text="Age" />
-      <DatePicker fx:id="ageDate" layoutX="45.0" layoutY="378.0" prefHeight="26.0" prefWidth="162.0" promptText="Date" />
+      <Label layoutX="46.0" layoutY="357.0" text="Birth" />
+      <DatePicker fx:id="birthDate" layoutX="45.0" layoutY="378.0" prefHeight="26.0" prefWidth="162.0" promptText="Date" />
    </children>
 </AnchorPane>
