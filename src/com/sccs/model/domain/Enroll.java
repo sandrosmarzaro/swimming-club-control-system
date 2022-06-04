@@ -8,9 +8,11 @@ import lombok.Setter;
 import java.io.Serializable;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor

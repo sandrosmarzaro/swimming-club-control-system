@@ -30,9 +30,7 @@ public class EnrollDAO extends DataAcessObject {
     }
 
     public static boolean update(Enroll enroll) {
-        String sql = "UPDATE enroll SET " +
-            "enroll(classId, employee, student) " +
-            "VALUES(?, ?, ?) WHERE enrollId=?";
+        String sql = "UPDATE enroll SET classId=?, employee=?, student=? WHERE enrollId=?;";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setInt(1, enroll.getClassId());

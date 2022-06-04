@@ -74,10 +74,10 @@ public class StudentDAO extends DataAcessObject {
 
             while (resultSet.next()) {
                 Student student = new Student(
-                        resultSet.getInt("studentId"),
-                        resultSet.getString("studentCpf"),
-                        resultSet.getString("studentName"),
-                        resultSet.getDate("birthDate").toLocalDate()
+                    resultSet.getInt("studentId"),
+                    resultSet.getString("studentCpf"),
+                    resultSet.getString("studentName"),
+                    resultSet.getDate("birthDate").toLocalDate()
                 );
                 studentList.add(student);
             }
@@ -97,10 +97,32 @@ public class StudentDAO extends DataAcessObject {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new Student(
-                        resultSet.getInt("studentId"),
-                        resultSet.getString("studentCpf"),
-                        resultSet.getString("studentName"),
-                        resultSet.getDate("age").toLocalDate()
+                    resultSet.getInt("studentId"),
+                    resultSet.getString("studentCpf"),
+                    resultSet.getString("studentName"),
+                    resultSet.getDate("birthDate").toLocalDate()
+                );
+            }
+        }
+        catch (SQLException sqlException) {
+            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+        return null;
+    }
+    
+    public static Student search(Integer id) {
+
+        String sql = "SELECT * FROM student WHERE studentId=?";
+        try {
+            PreparedStatement statement = connectionDAO.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new Student(
+                    resultSet.getInt("studentId"),
+                    resultSet.getString("studentCpf"),
+                    resultSet.getString("studentName"),
+                    resultSet.getDate("birthDate").toLocalDate()
                 );
             }
         }

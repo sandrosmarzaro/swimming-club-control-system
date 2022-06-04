@@ -3,13 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="430.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.sccs.controller.EnrollControl">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.EnrollControl">
    <children>
-      <Button layoutX="185.0" layoutY="429.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Delete" />
-      <Button layoutX="271.0" layoutY="429.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Update" />
+      <Button fx:id="deleteButton" layoutX="185.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="30.0" prefWidth="65.0" text="Delete" />
+      <Button fx:id="updateButton" layoutX="271.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickUpdate" prefHeight="30.0" prefWidth="65.0" text="Update" />
       <Button fx:id="addButton" layoutX="354.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickAdd" prefHeight="30.0" prefWidth="65.0" text="Add" />
       <ComboBox fx:id="classCombo" layoutX="108.0" layoutY="304.0" prefHeight="26.0" prefWidth="185.0" promptText="Select Classroom..." />
       <ComboBox fx:id="studentCombo" layoutX="110.0" layoutY="243.0" prefHeight="26.0" prefWidth="185.0" promptText="Select Student..." />
@@ -17,5 +18,13 @@
       <Label layoutX="109.0" layoutY="347.0" text=" Employee" />
       <Label layoutX="111.0" layoutY="286.0" text="Classroom" />
       <Label layoutX="113.0" layoutY="225.0" text="Student" />
+      <TableView fx:id="table" layoutX="53.0" layoutY="18.0" prefHeight="200.0" prefWidth="329.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="31.5" text="ID" />
+          <TableColumn fx:id="studentNameColumn" prefWidth="104.0" text="Student" />
+            <TableColumn fx:id="classNameColumn" prefWidth="90.0" text="Class" />
+            <TableColumn fx:id="employeeNameColumn" prefWidth="101.0" text="Employee" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

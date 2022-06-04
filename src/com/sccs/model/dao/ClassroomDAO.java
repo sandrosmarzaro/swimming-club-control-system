@@ -122,7 +122,7 @@ public class ClassroomDAO extends DataAcessObject {
         return null;
     }
     
-    public static boolean updateVacancies(Integer id) {
+    public static boolean decreaseVacancies(Integer id) {
         
         String sql = "UPDATE classroom SET " +
             "vacanciesNumber = vacanciesNumber - 1\n" +
@@ -132,6 +132,40 @@ public class ClassroomDAO extends DataAcessObject {
             statement.setInt(1, id);
             statement.execute();
             return true;
+        }
+        catch (SQLException sqlException) {
+            Logger.getLogger(ClassroomDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+        return false;
+    }
+    
+    public static boolean increaseVacancies(Integer id) {
+        
+        String sql = "UPDATE classroom SET " +
+            "vacanciesNumber = vacanciesNumber + 1\n" +
+            "WHERE classroomId = ?;";
+        try{
+            PreparedStatement statement = connectionDAO.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+            return true;
+        }
+        catch (SQLException sqlException) {
+            Logger.getLogger(ClassroomDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+        return false;
+    }
+    
+    public static boolean hasVacancy(Integer id) {
+        
+        String sql = "SELECT vacanciesnumber FROM classroom WHERE classroomid=?";
+        try {
+            PreparedStatement statement = connectionDAO.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getInt("vacanciesNumber") > 0;
+            }
         }
         catch (SQLException sqlException) {
             Logger.getLogger(ClassroomDAO.class.getName()).log(Level.SEVERE, null, sqlException);

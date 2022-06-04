@@ -17,8 +17,8 @@ public class EmployeeDAO extends DataAcessObject {
     public static boolean insert(Employee employee) {
         
         String sql = "INSERT INTO employee(" +
-                    "employeeCpf, employeeName, employeeLogin, employeePassword) " +
-                    "VALUES(?, ?, ?, ?)";
+            "employeeCpf, employeeName, employeeLogin, employeePassword) " +
+            "VALUES(?, ?, ?, ?)";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, employee.getCpf());
@@ -38,7 +38,7 @@ public class EmployeeDAO extends DataAcessObject {
     public static boolean update(Employee employee) {
         
         String sql = "UPDATE employee SET employeeCpf=?, employeeName=?, "
-                + "employeeLogin=? WHERE employeeId=?";
+            + "employeeLogin=? WHERE employeeId=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, employee.getCpf());
@@ -79,11 +79,11 @@ public class EmployeeDAO extends DataAcessObject {
 
             while (resultSet.next()) {
                 Employee employee = new Employee(
-                        resultSet.getInt("employeeId"),
-                        resultSet.getString("employeeCpf"),
-                        resultSet.getString("employeeName"),
-                        resultSet.getString("employeeLogin"),
-                        resultSet.getString("employeePassword")
+                    resultSet.getInt("employeeId"),
+                    resultSet.getString("employeeCpf"),
+                    resultSet.getString("employeeName"),
+                    resultSet.getString("employeeLogin"),
+                    resultSet.getString("employeePassword")
                 );
                 employeeList.add(employee);
             }
@@ -103,11 +103,11 @@ public class EmployeeDAO extends DataAcessObject {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new Employee(
-                        resultSet.getInt("employeeId"),
-                        resultSet.getString("employeeCpf"),
-                        resultSet.getString("employeeName"),
-                        resultSet.getString("employeeLogin"),
-                        resultSet.getString("employeePassword")
+                    resultSet.getInt("employeeId"),
+                    resultSet.getString("employeeCpf"),
+                    resultSet.getString("employeeName"),
+                    resultSet.getString("employeeLogin"),
+                    resultSet.getString("employeePassword")
                 );
             }
         }
@@ -126,11 +126,34 @@ public class EmployeeDAO extends DataAcessObject {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new Employee(
-                        resultSet.getInt("employeeId"),
-                        resultSet.getString("employeeCpf"),
-                        resultSet.getString("employeeName"),
-                        resultSet.getString("employeeLogin"),
-                        resultSet.getString("employeePassword")
+                    resultSet.getInt("employeeId"),
+                    resultSet.getString("employeeCpf"),
+                    resultSet.getString("employeeName"),
+                    resultSet.getString("employeeLogin"),
+                    resultSet.getString("employeePassword")
+                );
+            }
+        }
+        catch (SQLException sqlException) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+        return null;
+    }
+    
+    public static Employee idSearch(Integer id) {
+        
+        String sql = "SELECT * FROM employee WHERE employeeId=?";
+        try {
+            PreparedStatement statement = connectionDAO.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new Employee(
+                    resultSet.getInt("employeeId"),
+                    resultSet.getString("employeeCpf"),
+                    resultSet.getString("employeeName"),
+                    resultSet.getString("employeeLogin"),
+                    resultSet.getString("employeePassword")
                 );
             }
         }
