@@ -96,6 +96,22 @@ public class ClassroomDAO extends DataAcessObject {
         }
         return classList;
     }
+    
+    public static List<String> listNames() {
+        String sql = "SELECT className FROM classroom;";
+        List<String> namesList = new ArrayList<>();
+        try {
+            PreparedStatement statement = connectionDAO.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                namesList.add(resultSet.getString("className"));
+            }
+        }
+        catch (SQLException sqlException) {
+            Logger.getLogger(ClassroomDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+        return namesList;
+    }
 
     public static Classroom search(Integer number) {
 

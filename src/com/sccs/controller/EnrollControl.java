@@ -70,9 +70,11 @@ public class EnrollControl implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         EnrollTableDAO.setConnection(connection);
+        EnrollDAO.setConnection(connection);
         StudentDAO.setConnection(connection);
         ClassroomDAO.setConnection(connection);
         EmployeeDAO.setConnection(connection);
+        SwimmingPoolDAO.setConnection(connection);
         
         loadTable();
         loadStudentCombo();

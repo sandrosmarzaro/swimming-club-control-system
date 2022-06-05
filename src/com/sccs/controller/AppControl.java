@@ -77,4 +77,10 @@ public class AppControl implements Initializable {
         AnchorPane anchorPaneEmployee = (AnchorPane) FXMLLoader.load(getClass().getResource("/com/sccs/view/EnrollView.fxml"));
         rightAnchorPane.getChildren().setAll(anchorPaneEmployee);
     }
+    
+    @FXML
+    public void handleClickGraphic() throws IOException {
+        AnchorPane anchorPaneEmployee = (AnchorPane) FXMLLoader.load(getClass().getResource("/com/sccs/view/GraphicView.fxml"));
+        rightAnchorPane.getChildren().setAll(anchorPaneEmployee);
+    }
 }

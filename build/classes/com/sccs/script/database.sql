@@ -99,7 +99,8 @@ CREATE TABLE
     CONSTRAINT pk_enroll PRIMARY KEY (enrollId),
     CONSTRAINT fk_classroom_enroll FOREIGN KEY (classId) REFERENCES classroom(classroomId),
     CONSTRAINT fk_employee_enroll FOREIGN KEY (employee) REFERENCES employee(employeeId),
-    CONSTRAINT fk_student_enroll FOREIGN KEY (student) REFERENCES student(studentId)
+    CONSTRAINT fk_student_enroll FOREIGN KEY (student) REFERENCES student(studentId),
+    CONSTRAINT un_student UNIQUE (student)
   );
 
 INSERT INTO
@@ -146,7 +147,7 @@ INSERT INTO
     poolDepth
   )
 VALUES
-  ('Olympic', 0, 10, 10, 50.0, 25.0, 3.05),
+  ('Olympic', 23, 10, 10, 50.0, 25.0, 3.05),
   ('Little', 10, 31, 45, 27.9, 13.8, 0.90);
 
 INSERT INTO
@@ -159,8 +160,8 @@ INSERT INTO
     dayOfTheWeek
   )
 VALUES
-  ('Competitive Swimming', 1, 10, false, 1, 'FRIDAY'),
-  ('Beginner Swimming', 2, 45, true, 2, 'MONDAY');
+  ('Competitive', 1, 10, false, 1, 'FRIDAY'),
+  ('Beginner', 2, 45, true, 2, 'MONDAY');
 
 INSERT INTO
   enroll (classId, employee, student)

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="430.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.sccs.controller.GraphicControl">
+   <children>
+      <BarChart fx:id="barChart" layoutX="14.0" layoutY="25.0" prefHeight="339.0" prefWidth="398.0" title="Students per Class">
+        <xAxis>
+          <CategoryAxis fx:id="classAxis" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="countAxis" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>
