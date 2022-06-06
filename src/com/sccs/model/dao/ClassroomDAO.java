@@ -80,13 +80,13 @@ public class ClassroomDAO extends DataAcessObject {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Classroom classroom = new Classroom(
-                        resultSet.getInt("classroomId"),
-                        resultSet.getString("className"),
-                        resultSet.getInt("usedPool"),
-                        resultSet.getInt("vacanciesNumber"),
-                        resultSet.getBoolean("enrollmentOpen"),
-                        resultSet.getInt("teacher"),
-                        DayOfTheWeek.valueOf(resultSet.getString("dayOfTheWeek"))
+                    resultSet.getInt("classroomId"),
+                    resultSet.getString("className"),
+                    resultSet.getInt("usedPool"),
+                    resultSet.getInt("vacanciesNumber"),
+                    resultSet.getBoolean("enrollmentOpen"),
+                    resultSet.getInt("teacher"),
+                    DayOfTheWeek.valueOf(resultSet.getString("dayOfTheWeek"))
                 );
                 classList.add(classroom);
             }

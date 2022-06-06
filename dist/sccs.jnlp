@@ -8,11 +8,31 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="lib/jasperreports-javaflow-6.12.2.jar" size="5482492" download="eager" />
+    <jar href="lib/commons-collections4-4.4-javadoc.jar" size="2722025" download="eager" />
+    <jar href="lib/commons-collections4-4.4-sources.jar" size="715541" download="eager" />
+    <jar href="lib/commons-collections4-4.4-test-sources.jar" size="533016" download="eager" />
+    <jar href="lib/commons-collections4-4.4-tests.jar" size="816412" download="eager" />
+    <jar href="lib/commons-collections4-4.4.jar" size="751914" download="eager" />
+    <jar href="lib/commons-digester-2.1.jar" size="196768" download="eager" />
+    <jar href="lib/commons-logging-1.2-javadoc.jar" size="158448" download="eager" />
+    <jar href="lib/commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="lib/jasperreports-6.19.1.jar" size="5628350" download="eager" />
+    <jar href="lib/jasperreports-annotation-processors-6.19.1.jar" size="19200" download="eager" />
+    <jar href="lib/jasperreports-castor-6.19.1.jar" size="43900" download="eager" />
+    <jar href="lib/jasperreports-chart-customizers-6.19.1.jar" size="44838" download="eager" />
+    <jar href="lib/jasperreports-chart-themes-6.19.1.jar" size="187809" download="eager" />
+    <jar href="lib/jasperreports-custom-visualization-6.19.1.jar" size="128440" download="eager" />
+    <jar href="lib/jasperreports-fonts-6.19.1.jar" size="2480418" download="eager" />
+    <jar href="lib/jasperreports-functions-6.19.1.jar" size="35812" download="eager" />
+    <jar href="lib/jasperreports-javaflow-6.19.1.jar" size="5575830" download="eager" />
+    <jar href="lib/jasperreports-metadata-6.19.1.jar" size="9986" download="eager" />
     <jar href="lib/jasypt-1.9.0.jar" size="125643" download="eager" />
     <jar href="lib/lombok-1.18.24.jar" size="1972167" download="eager" />
     <jar href="lib/postgresql-42.3.6.jar" size="1041072" download="eager" />
-    <jar href="sccs.jar" size="65015" download="eager" />
+    <jar href="lib/spring-beans-5.2.22.RELEASE.jar" size="689248" download="eager" />
+    <jar href="lib/spring-core-5.2.22.RELEASE.jar" size="1447596" download="eager" />
+    <jar href="lib/spring-jcl-5.2.22.RELEASE.jar" size="23961" download="eager" />
+    <jar href="sccs.jar" size="81868" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="sccs" >
     <param name="requiredFXVersion" value="8.0+"/>

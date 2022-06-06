@@ -133,7 +133,7 @@ VALUES
 INSERT INTO
   student (studentCpf, studentName, birthDate, age)
 VALUES
-  ('33333333333', 'Euclaciano', '2022-06-06', 0),
+  ('33333333333', 'Euclaciano', '2022-06-06', 23),
   ('44444444444', 'Deltrano', '1996-02-29', 26);
 
 INSERT INTO
@@ -147,7 +147,7 @@ INSERT INTO
     poolDepth
   )
 VALUES
-  ('Olympic', 23, 10, 10, 50.0, 25.0, 3.05),
+  ('Olympic', 0, 10, 10, 50.0, 25.0, 3.05),
   ('Little', 10, 31, 45, 27.9, 13.8, 0.90);
 
 INSERT INTO

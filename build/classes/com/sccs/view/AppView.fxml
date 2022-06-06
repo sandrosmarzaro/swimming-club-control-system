@@ -18,7 +18,7 @@
             <Button fx:id="employeeButton" layoutX="59.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleClickEmployee" prefHeight="35.0" prefWidth="150.0" text="Employee" />
             <Label fx:id="nameLabel" layoutX="89.0" layoutY="29.0" text="employeeName" />
             <Button fx:id="graphicButton" layoutX="59.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleClickGraphic" prefHeight="35.0" prefWidth="150.0" text="Graphic" />
-            <Button fx:id="reportButton" layoutX="59.0" layoutY="430.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Report" />
+            <Button fx:id="reportButton" layoutX="59.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleClickReport" prefHeight="35.0" prefWidth="150.0" text="Report" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="rightAnchorPane" prefHeight="640.0" prefWidth="482.0">
