@@ -1,0 +1,21 @@
+.button {
+    -fx-background-radius: 6;
+}
+
+.text-field {
+    -fx-background-radius: 6;
+}
+
+.label.title {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-color: 083b66;
+}
+
+.label {
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-font-weight: bold;
+}

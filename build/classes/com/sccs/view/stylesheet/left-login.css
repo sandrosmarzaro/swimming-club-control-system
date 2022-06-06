@@ -1,0 +1,7 @@
+.anchor-pane {
+    -fx-background-color: add8e6;
+}
+
+.image-view {
+    -fx-background-image: url("images/logo.png");
+}
