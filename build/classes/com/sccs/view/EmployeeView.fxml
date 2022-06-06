@@ -8,28 +8,28 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.EmployeeControl">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="440.0" style="-fx-background-color: add8e6;" stylesheets="@stylesheet/right-app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.EmployeeControl">
    <children>
-      <TableView fx:id="tableView" layoutX="84.0" layoutY="33.0" prefHeight="255.0" prefWidth="255.0">
+      <TableView fx:id="tableView" layoutX="80.0" layoutY="33.0" prefHeight="255.0" prefWidth="255.0">
         <columns>
           <TableColumn fx:id="columnId" prefWidth="35.0" resizable="false" text="ID" />
           <TableColumn fx:id="columnCpf" prefWidth="104.0" resizable="false" text="CPF" />
-            <TableColumn fx:id="columnName" prefWidth="114.0" text="Name" />
+            <TableColumn fx:id="columnName" prefWidth="112.0" text="Name" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="deleteButton" layoutX="102.0" layoutY="428.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="30.0" prefWidth="65.0" text="Delete" />
-      <Button fx:id="updateButton" layoutX="184.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleClickUpdate" prefHeight="30.0" prefWidth="65.0" text="Update" />
-      <TextField fx:id="cpfText" layoutX="39.0" layoutY="318.0" promptText="CPF" />
-      <Label layoutX="39.0" layoutY="301.0" text="CPF" />
-      <Button fx:id="addButton" layoutX="263.0" layoutY="427.0" mnemonicParsing="false" onAction="#hadleClickAdd" prefHeight="30.0" prefWidth="65.0" text="Add" />
-      <TextField fx:id="nameText" layoutX="39.0" layoutY="374.0" promptText="Name" />
-      <Label layoutX="41.0" layoutY="357.0" text="Name" />
-      <TextField fx:id="loginText" layoutX="243.0" layoutY="317.0" promptText="Login" />
-      <Label layoutX="243.0" layoutY="300.0" text="Login" />
-      <Label layoutX="244.0" layoutY="357.0" text="Password" />
-      <PasswordField fx:id="passwordText" layoutX="243.0" layoutY="374.0" promptText="Password" />
+      <Button fx:id="deleteButton" layoutX="96.0" layoutY="428.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="30.0" prefWidth="71.0" text="Delete" />
+      <Button fx:id="updateButton" layoutX="184.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleClickUpdate" prefHeight="30.0" prefWidth="71.0" text="Update" />
+      <TextField fx:id="cpfText" layoutX="27.0" layoutY="318.0" promptText="CPF" />
+      <Label layoutX="27.0" layoutY="301.0" text="CPF" />
+      <Button fx:id="addButton" layoutX="272.0" layoutY="427.0" mnemonicParsing="false" onAction="#hadleClickAdd" prefHeight="30.0" prefWidth="71.0" text="Add" />
+      <TextField fx:id="nameText" layoutX="27.0" layoutY="374.0" promptText="Name" />
+      <Label layoutX="29.0" layoutY="357.0" text="Name" />
+      <TextField fx:id="loginText" layoutX="231.0" layoutY="317.0" promptText="Login" />
+      <Label layoutX="231.0" layoutY="300.0" text="Login" />
+      <Label layoutX="232.0" layoutY="357.0" text="Password" />
+      <PasswordField fx:id="passwordText" layoutX="231.0" layoutY="374.0" promptText="Password" />
    </children>
 </AnchorPane>

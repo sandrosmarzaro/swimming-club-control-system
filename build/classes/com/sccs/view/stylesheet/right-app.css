@@ -1,0 +1,63 @@
+.table-view {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: "#083b66";
+    -fx-padding: 0.5;
+}
+
+.table-column {
+}
+
+.label {
+   -fx-font-weight: bold;
+    -fx-text-fill: "#083b66";
+}
+
+.button {
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-text-fill: "#083b66";
+    -fx-border-radius: 6;
+    -fx-border-color: "#083b66";
+}
+
+.text-field {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: "#083b66";
+}
+
+.combo-box {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: "#083b66";
+}
+
+.choice-box {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: "#083b66";
+}
+
+.date-picker {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.toggle-button {
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-border-color: "#083b66";
+    -fx-font-weight: bold;
+    -fx-text-fill: "#083b66";
+}
+
+.spinner {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.bar-chart {
+    -fx-border-color: "#083b66";
+    -fx-text-fill: "#083b66";
+}

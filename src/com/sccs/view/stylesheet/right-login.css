@@ -9,13 +9,15 @@
 .label.title {
     -fx-font-size: 24;
     -fx-font-weight: bold;
-    -fx-color: 083b66;
+    -fx-text-fill: "#083b66";
 }
 
 .label {
     -fx-font-weight: bold;
+    -fx-text-fill: "#083b66";
 }
 
 .button {
     -fx-font-weight: bold;
+    -fx-text-fill: "#083b66";
 }

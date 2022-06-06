@@ -8,8 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="420.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.sccs.controller.PoolControl">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="420.0" style="-fx-background-color: add8e6;" stylesheets="@stylesheet/right-app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.PoolControl">
    <children>
       <TextField fx:id="nameField" layoutX="22.0" layoutY="259.0" promptText="Name" />
       <TextField fx:id="widthField" layoutX="220.0" layoutY="260.0" promptText="Width" />
@@ -30,12 +29,12 @@
           <TableColumn fx:id="maxColumn" prefWidth="38.666656494140625" text="Max" />
             <TableColumn fx:id="widthColumn" prefWidth="56.333343505859375" text="Width" />
             <TableColumn fx:id="lengthColumn" prefWidth="63.333343505859375" text="Length" />
-            <TableColumn fx:id="depthColumn" prefWidth="52.0" text="Depth" />
+            <TableColumn fx:id="depthColumn" prefWidth="49.333343505859375" text="Depth" />
         </columns>
       </TableView>
-      <Button fx:id="deleteButton" layoutX="207.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="35.0" prefWidth="63.0" text="Delete" />
-      <Button fx:id="addButton" layoutX="349.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickAdd" prefHeight="35.0" prefWidth="63.0" text="Add" />
-      <Button fx:id="updateButton" layoutX="279.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickUpdate" prefHeight="35.0" prefWidth="63.0" text="Update" />
+      <Button fx:id="deleteButton" layoutX="199.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="35.0" prefWidth="63.0" text="Delete" />
+      <Button fx:id="addButton" layoutX="344.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickAdd" prefHeight="35.0" prefWidth="63.0" text="Add" />
+      <Button fx:id="updateButton" layoutX="268.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleClickUpdate" prefHeight="35.0" prefWidth="70.0" text="Update" />
       <Spinner fx:id="ageSpinner" editable="true" layoutX="22.0" layoutY="316.0" />
       <Spinner fx:id="maxSpinner" editable="true" layoutX="23.0" layoutY="375.0" />
       <Spinner fx:id="lanesSpinner" editable="true" layoutX="22.0" layoutY="433.0" />

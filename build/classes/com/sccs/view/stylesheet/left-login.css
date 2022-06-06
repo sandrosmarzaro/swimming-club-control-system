@@ -1,7 +1,12 @@
 .anchor-pane {
-    -fx-background-color: add8e6;
+    -fx-background-color: "#add8e6";
 }
 
 .image-view {
-    -fx-background-image: url("images/logo.png");
+    -fx-image: url("../images/logo.png");
+}
+.label {
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+    -fx-text-fill: "#083b66";
 }

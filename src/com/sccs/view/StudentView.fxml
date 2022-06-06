@@ -8,19 +8,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.StudentControl">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="400.0" style="-fx-background-color: add8e6;" stylesheets="@stylesheet/right-app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.StudentControl">
    <children>
       <TableView fx:id="table" layoutX="45.0" layoutY="26.0" prefHeight="260.0" prefWidth="338.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="40.0" text="Id" />
           <TableColumn fx:id="cpfColumn" prefWidth="100.5" text="CPF" />
             <TableColumn fx:id="nameColumn" prefWidth="116.5" text="Name" />
-            <TableColumn fx:id="birthColumn" prefWidth="78.5" text="Birth" />
+            <TableColumn fx:id="birthColumn" prefWidth="75.66665649414062" text="Birth" />
         </columns>
       </TableView>
-      <Button fx:id="deleteButton" layoutX="100.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="30.0" prefWidth="65.0" text="Delete" />
-      <Button fx:id="updateButton" layoutX="184.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleClickUpdate" prefHeight="30.0" prefWidth="65.0" text="Update" />
-      <Button fx:id="addButton" layoutX="269.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleClickAdd" prefHeight="30.0" prefWidth="65.0" text="Add" />
+      <Button fx:id="deleteButton" layoutX="100.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleClickDelete" prefHeight="30.0" prefWidth="71.0" text="Delete" />
+      <Button fx:id="updateButton" layoutX="184.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleClickUpdate" prefHeight="30.0" prefWidth="71.0" text="Update" />
+      <Button fx:id="addButton" layoutX="269.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleClickAdd" prefHeight="30.0" prefWidth="71.0" text="Add" />
       <TextField fx:id="cpfField" layoutX="45.0" layoutY="319.0" promptText="CPF" />
       <Label layoutX="46.0" layoutY="302.0" text="CPF" />
       <TextField fx:id="nameField" layoutX="223.0" layoutY="318.0" promptText="Name" />

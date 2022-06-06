@@ -3,28 +3,35 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.AppControl">
    <children>
-      <AnchorPane prefHeight="640.0" prefWidth="192.0">
+      <AnchorPane prefHeight="480.0" prefWidth="221.0" stylesheets="@stylesheet/left-app.css">
          <children>
-            <Button fx:id="enrollButton" layoutX="59.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleClickEnroll" prefHeight="35.0" prefWidth="150.0" text="Enroll" />
-            <Button fx:id="classButton" layoutX="59.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleClickClass" prefHeight="35.0" prefWidth="150.0" text="Class" />
-            <Button fx:id="studentButton" layoutX="59.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleClickStudent" prefHeight="35.0" prefWidth="150.0" text="Student" />
-            <Button fx:id="teacherButton" layoutX="59.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleClickTeacher" prefHeight="35.0" prefWidth="150.0" text="Teacher" />
-            <Button fx:id="poolButton" layoutX="59.0" layoutY="278.0" mnemonicParsing="false" onAction="#handleClickPool" prefHeight="35.0" prefWidth="150.0" text="Poll" />
-            <Button fx:id="employeeButton" layoutX="59.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleClickEmployee" prefHeight="35.0" prefWidth="150.0" text="Employee" />
-            <Label fx:id="nameLabel" layoutX="89.0" layoutY="29.0" text="employeeName" />
-            <Button fx:id="graphicButton" layoutX="59.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleClickGraphic" prefHeight="35.0" prefWidth="150.0" text="Graphic" />
-            <Button fx:id="reportButton" layoutX="59.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleClickReport" prefHeight="35.0" prefWidth="150.0" text="Report" />
+            <Label fx:id="nameLabel" layoutX="68.0" layoutY="24.0" prefHeight="25.0" prefWidth="144.0" text="employeeName" textAlignment="RIGHT" />
+            <Button fx:id="enrollButton" layoutX="-1.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleClickEnroll" prefHeight="51.0" prefWidth="222.0" text="Enroll" />
+            <Button fx:id="classButton" layoutX="-1.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleClickClass" prefHeight="52.0" prefWidth="222.0" text="Class" />
+            <Button fx:id="studentButton" layoutY="172.0" mnemonicParsing="false" onAction="#handleClickStudent" prefHeight="51.0" prefWidth="221.0" text="Student" />
+            <Button fx:id="teacherButton" layoutY="223.0" mnemonicParsing="false" onAction="#handleClickTeacher" prefHeight="51.0" prefWidth="221.0" text="Teacher" />
+            <Button fx:id="poolButton" layoutY="274.0" mnemonicParsing="false" onAction="#handleClickPool" prefHeight="51.0" prefWidth="221.0" text="Poll" />
+            <Button fx:id="employeeButton" layoutY="325.0" mnemonicParsing="false" onAction="#handleClickEmployee" prefHeight="51.0" prefWidth="221.0" text="Employee" />
+            <Button fx:id="graphicButton" layoutY="376.0" mnemonicParsing="false" onAction="#handleClickGraphic" prefHeight="51.0" prefWidth="221.0" text="Graphic" />
+            <Button fx:id="reportButton" layoutY="427.0" mnemonicParsing="false" onAction="#handleClickReport" prefHeight="53.0" prefWidth="221.0" text="Report" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="4.0" layoutY="70.0" onMouseClicked="#handleClickEnroll" pickOnBounds="true" preserveRatio="true" styleClass="enroll" />
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="124.0" onMouseClicked="#handleClickClass" pickOnBounds="true" preserveRatio="true" styleClass="class" />
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="176.0" onMouseClicked="#handleClickStudent" pickOnBounds="true" preserveRatio="true" styleClass="student" />
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="5.0" layoutY="227.0" onMouseClicked="#handleClickTeacher" pickOnBounds="true" preserveRatio="true" styleClass="teacher" />
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="280.0" onMouseClicked="#handleClickPool" pickOnBounds="true" preserveRatio="true" styleClass="poll" />
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="328.0" onMouseClicked="#handleClickEmployee" pickOnBounds="true" preserveRatio="true" styleClass="employee" />
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="5.0" layoutY="380.0" onMouseClicked="#handleClickGraphic" pickOnBounds="true" preserveRatio="true" styleClass="graphic" />
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="432.0" onMouseClicked="#handleClickReport" pickOnBounds="true" preserveRatio="true" styleClass="report" />
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="login" />
+            <Separator layoutX="220.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="481.0" prefWidth="6.0" style="-fx-halignment: right; -fx-background-color: lightgray; -fx-padding: 0; -fx-border-width: 0;" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rightAnchorPane" prefHeight="640.0" prefWidth="482.0">
-         <children>
-            <Separator layoutX="-3.0" layoutY="-9.0" orientation="VERTICAL" prefHeight="489.0" prefWidth="25.0" />
-         </children>
-      </AnchorPane>
+      <AnchorPane fx:id="rightAnchorPane" prefHeight="480.0" prefWidth="429.0" style="-fx-background-color: add8e6;" />
    </children>
 </HBox>
