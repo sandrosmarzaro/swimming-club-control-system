@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class EnrollReportDAO extends DataAcessObject {
     
-    public static List<EnrollReport> list(Integer minAge, Integer maxAge) {
+    public static List<EnrollReport> dayList(DayOfTheWeek day) {
         String sql = "SELECT\n" +
             "  COUNT(enroll.enrollid) AS studentsQuantity,\n" +
             "  SUM (classroom.vacanciesnumber) AS vacanciesQuantity,\n" +
@@ -23,9 +23,40 @@ public class EnrollReportDAO extends DataAcessObject {
             "  enroll\n" +
             "  INNER JOIN classroom ON enroll.classid = classroom.classroomid\n" +
             "  INNER JOIN swimmingpool pool ON classroom.usedpool = pool.poolnumber\n" +
-            "  WHERE pool.averageage > "+ minAge + " AND pool.averageage < " + maxAge +"\n" +
-            "GROUP BY\n" +
-            "  classroom.dayoftheweek;";
+            "  WHERE classroom.dayoftheweek = '" + day + "'" +
+            "GROUP BY classroom.dayoftheweek;";
+        List<EnrollReport> list = new ArrayList();
+        try {
+            PreparedStatement statement = connectionDAO.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            
+            while (resultSet.next()) {
+                EnrollReport enrollReport = new EnrollReport(
+                    resultSet.getInt("studentsQuantity"),
+                    resultSet.getInt("vacanciesQuantity"),
+                    resultSet.getDouble("averageAge"),
+                    DayOfTheWeek.valueOf(resultSet.getString("dayWeek"))
+                );
+                list.add(enrollReport);
+            }
+        }
+        catch (SQLException sqlException) {
+            Logger.getLogger(EnrollReportDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+        return list;
+    }
+    
+    public static List<EnrollReport> allList() {
+        String sql = "SELECT\n" +
+            "  COUNT(enroll.enrollid) AS studentsQuantity,\n" +
+            "  SUM (classroom.vacanciesnumber) AS vacanciesQuantity,\n" +
+            "  TRUNC (AVG (pool.averageage), 2) AS averageAge,\n" +
+            "  classroom.dayoftheweek AS dayWeek\n" +
+            "FROM\n" +
+            "  enroll\n" +
+            "  INNER JOIN classroom ON enroll.classid = classroom.classroomid\n" +
+            "  INNER JOIN swimmingpool pool ON classroom.usedpool = pool.poolnumber\n" +
+            "GROUP BY classroom.dayoftheweek;";
         List<EnrollReport> list = new ArrayList();
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);

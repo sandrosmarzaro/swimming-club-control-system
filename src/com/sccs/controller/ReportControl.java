@@ -7,19 +7,18 @@ import com.sccs.model.domain.DayOfTheWeek;
 import com.sccs.model.domain.EnrollReport;
 import java.net.URL;
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -43,23 +42,17 @@ public class ReportControl implements Initializable {
     @FXML
     private TableColumn<EnrollReport, DayOfTheWeek>  dayColumn;
     @FXML
-    private Spinner<Integer> minSpinner = new Spinner<>();
-    private Integer currentMin = 0;
+    private ComboBox<DayOfTheWeek> dayCombo;
     @FXML
-    private Spinner<Integer> maxSpinner = new Spinner<>();
-    private Integer currentMax = 100;
-    @FXML
-    Button printButton;
+    private Button printButton;
     @FXML 
-    Button refreshButton;
-    
-    private SpinnerValueFactory<Integer> spinnerFactoryMin = 
-        new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE);
-    private SpinnerValueFactory<Integer> spinnerFactoryMax = 
-        new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE);
+    private Button refreshButton;
+    @FXML
+    private Button clearButton;
     
     private List<EnrollReport> enrollReportList;
     private ObservableList<EnrollReport> enrollReportObservableList;
+    private final DayOfTheWeek[] daysArray = DayOfTheWeek.values();
     
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();
@@ -68,50 +61,32 @@ public class ReportControl implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         EnrollReportDAO.setConnection(connection);
-        loadTable(0, 100);
-        loadsSpinners();
+        loadTable();
+        loadDayCombo();
     }    
     
     @FXML
-    public void loadTable(Integer minAge, Integer maxAge) {
+    public void loadTable() {
         
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         vacanciesColumn.setCellValueFactory(new PropertyValueFactory<>("vacancies"));
         averageColumn.setCellValueFactory(new PropertyValueFactory<>("average"));
         dayColumn.setCellValueFactory(new PropertyValueFactory<>("day"));
         
-        enrollReportList = EnrollReportDAO.list(minAge, maxAge);
-        enrollReportObservableList = FXCollections.observableArrayList(enrollReportList);
-        table.setItems(enrollReportObservableList);
+        handleClickClear();
     }
     
-    @FXML
-    public void loadsSpinners() {
-        
-        spinnerFactoryMin.setValue(0);
-        minSpinner.setValueFactory(spinnerFactoryMin);
-        spinnerFactoryMax.setValue(100);
-        maxSpinner.setValueFactory(spinnerFactoryMax);
-        
-        minSpinner.valueProperty().addListener(
-            (ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) -> {
-                currentMin = minSpinner.getValue();
-        });
-        maxSpinner.valueProperty().addListener(
-            (ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) -> {
-                currentMax = maxSpinner.getValue();
-        });
+    @FXML 
+    public void loadDayCombo() {
+        dayCombo.getItems().addAll(daysArray);
     }
     
     @FXML
     public Boolean isValidInput() {
         
         String errorMessage = "";
-        if (minSpinner == null || minSpinner.getValue() > maxSpinner.getValue()) {
-            errorMessage += "Invalid Min Value\n";
-        }
-        if (maxSpinner == null || maxSpinner.getValue() < minSpinner.getValue()) {
-            errorMessage += "Invalid Max Value\n";
+        if (dayCombo.getValue() == null ) {
+            errorMessage += "Invalid Day Value\n";
         }
         
         if (errorMessage.isEmpty()) {
@@ -130,19 +105,32 @@ public class ReportControl implements Initializable {
     @FXML
     public void handleClickRefresh() {
         
-        if (isValidInput()) {
-            loadTable(minSpinner.getValue(), maxSpinner.getValue());
-        }
+       if (isValidInput()) {
+           DayOfTheWeek day = dayCombo.getValue();
+           enrollReportList = EnrollReportDAO.dayList(day);
+           enrollReportObservableList = FXCollections.observableArrayList(enrollReportList);
+           table.setItems(enrollReportObservableList);
+       }
+    }
+    
+    @FXML
+    public void handleClickClear() {
+        
+        enrollReportList = EnrollReportDAO.allList();
+        enrollReportObservableList = FXCollections.observableArrayList(enrollReportList);
+        table.setItems(enrollReportObservableList);
     }
     
     @FXML
     public void handleClickPrint() {
         
         if (isValidInput()) {
-            URL url = getClass().getResource("/com/sccs/report/sccs-report.jasper");
+            HashMap filter = new HashMap();
+            filter.put("dayOfWeek", dayCombo.getValue().toString());
+            URL url = getClass().getResource("/com/sccs/report/report.jasper");
             try {
                 JasperReport jasperReport = (JasperReport) JRLoader.loadObject(url);
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, filter, connection);
                 JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
                 jasperViewer.setVisible(true);
             } catch (JRException ex) {
