@@ -6,8 +6,11 @@ import com.sccs.model.database.SingletonDatabase;
 import com.sccs.model.domain.Employee;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -109,6 +112,14 @@ public class EmployeeControl implements Initializable {
         if (cpfText.getText().isEmpty() || cpfText.getText() == null) {
             errorMessage += "Invalid CPF\n";
         }
+        try {
+            if (Integer.valueOf(cpfText.getText()) == null) {
+                errorMessage += "Invalid CPF\n";
+            }
+        }
+        catch (NumberFormatException ex) {
+            errorMessage += "Invalid CPF\n";
+        }
         if (loginText.getText().isEmpty() || loginText.getText() == null) {
             errorMessage += "Invalid Login\n";
         }
@@ -171,8 +182,17 @@ public class EmployeeControl implements Initializable {
         
         Employee employee = tableView.getSelectionModel().getSelectedItem();
         if (employee != null) {
-            EmployeeDAO.delete(employee);
-            loadTableView();
+            try {
+                EmployeeDAO.delete(employee);
+                loadTableView();
+            } catch (SQLException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Deleting");
+                alert.setHeaderText("Employee with records!");
+                alert.setContentText("Delete enrollments made by this employee"
+                        + "\nbefore removing him...\n");
+                alert.showAndWait();
+            }
         }
         else {
            noSelectedItemAlert();
