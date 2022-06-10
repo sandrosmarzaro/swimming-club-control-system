@@ -57,19 +57,12 @@ public class SwimmingPoolDAO extends DataAcessObject {
         }
     }
 
-    public static boolean delete(SwimmingPool pool) {
+    public static void delete(SwimmingPool pool) throws SQLException {
 
         String sql = "DELETE FROM swimmingPool WHERE poolNumber=?";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setInt(1, pool.getNumber());
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(SwimmingPoolDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setInt(1, pool.getNumber());
+        statement.execute();
     }
 
     public static List<SwimmingPool> list() {

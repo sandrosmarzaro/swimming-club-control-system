@@ -9,8 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -106,21 +105,25 @@ public class EmployeeControl implements Initializable {
     public Boolean isValidInput() {
         
         String errorMessage = "";
-        if (nameText.getText().isEmpty() || nameText.getText() == null) {
+        if (
+            nameText.getText().isEmpty() || 
+            nameText.getText() == null || 
+            nameText.getText().length() > 45
+        ) {
             errorMessage += "Invalid Name\n";
         }
-        if (cpfText.getText().isEmpty() || cpfText.getText() == null) {
+        if (
+            cpfText.getText().isEmpty() ||
+            cpfText.getText() == null ||
+            !Pattern.matches("^[0-9]{11}$", cpfText.getText())
+        ) {
             errorMessage += "Invalid CPF\n";
         }
-        try {
-            if (Integer.valueOf(cpfText.getText()) == null) {
-                errorMessage += "Invalid CPF\n";
-            }
-        }
-        catch (NumberFormatException ex) {
-            errorMessage += "Invalid CPF\n";
-        }
-        if (loginText.getText().isEmpty() || loginText.getText() == null) {
+        if (
+            loginText.getText().isEmpty() || 
+            loginText.getText() == null ||
+            loginText.getText().length() > 45 
+        ) {
             errorMessage += "Invalid Login\n";
         }
         if (passwordText.getText().isEmpty() || passwordText.getText() == null) {
@@ -190,7 +193,7 @@ public class EmployeeControl implements Initializable {
                 alert.setTitle("Error Deleting");
                 alert.setHeaderText("Employee with records!");
                 alert.setContentText("Delete enrollments made by this employee"
-                        + "\nbefore removing him...\n");
+                    + "\nbefore removing him...\n");
                 alert.showAndWait();
             }
         }

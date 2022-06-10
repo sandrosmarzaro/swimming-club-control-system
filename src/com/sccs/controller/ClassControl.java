@@ -11,6 +11,7 @@ import com.sccs.model.domain.SwimmingPool;
 import com.sccs.model.domain.Teacher;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -159,7 +160,11 @@ public class ClassControl implements Initializable {
     public Boolean isValidInput() {
         
         String errorMessage = "";
-        if (nameField.getText().isEmpty() || nameField.getText() == null) {
+        if (
+            nameField.getText().isEmpty() ||
+            nameField.getText() == null ||
+            nameField.getText().length() > 45
+        ) {
             errorMessage += "Invalid Name\n";
         }
         if (teacherCombo.getSelectionModel().getSelectedItem() == null) {
@@ -190,10 +195,10 @@ public class ClassControl implements Initializable {
                 nameField.getText(),
                 poolCombo.getSelectionModel().getSelectedItem().getNumber(),
                 SwimmingPoolDAO.search(poolCombo
-                        .getSelectionModel()
-                        .getSelectedItem()
-                        .getNumber())
-                        .getMaxCapacity(),
+                    .getSelectionModel()
+                    .getSelectedItem()
+                    .getNumber())
+                    .getMaxCapacity(),
                 openButton.isSelected(),
                 teacherCombo.getSelectionModel().getSelectedItem().getId(),
                 dayChoice.getSelectionModel().getSelectedItem()
@@ -236,8 +241,18 @@ public class ClassControl implements Initializable {
         
         Classroom classroom = table.getSelectionModel().getSelectedItem();
         if (classroom != null) {
-            ClassroomDAO.delete(classroom);
-            loadTable();
+            try {
+                ClassroomDAO.delete(classroom);
+                loadTable();
+            }
+            catch (SQLException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Deleting");
+                alert.setHeaderText("Classroom with records!");
+                alert.setContentText("Delete enrollments made by this classroom"
+                    + "\nbefore removing him...\n");
+                alert.showAndWait();
+            }
         }
         else {
             noSelectedItemAlert();

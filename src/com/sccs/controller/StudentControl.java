@@ -6,9 +6,12 @@ import com.sccs.model.database.SingletonDatabase;
 import com.sccs.model.domain.Student;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -104,15 +107,33 @@ public class StudentControl implements Initializable {
     public Boolean isValidInput() {
         
         String errorMessage = "";
-        if (nameField.getText().isEmpty() || nameField.getText() == null) {
+        if (
+            nameField.getText().isEmpty() ||
+            nameField.getText() == null ||
+            nameField.getText().length() > 45
+        ) {
             errorMessage += "Invalid Name\n";
         }
-        if (cpfField.getText().isEmpty() || cpfField.getText() == null) {
+        if (
+            cpfField.getText().isEmpty() ||
+            cpfField.getText() == null ||
+            !Pattern.matches("^[0-9]{11}$", cpfField.getText())
+        ) {
             errorMessage += "Invalid CPF\n";
         }
         if (birthDate.getValue() == null) {
             errorMessage += "Invalid Date\n";
         }
+        
+        try {
+            LocalDate.parse(birthDate.toString());
+        }
+        catch (DateTimeParseException ex) {
+            if (!errorMessage.contains("Invalid Date")) {
+                errorMessage += "Invalid Date\n";
+            }
+        }
+        
         
         if (errorMessage.isEmpty()) {
             return true;
@@ -167,8 +188,18 @@ public class StudentControl implements Initializable {
         
         Student student = table.getSelectionModel().getSelectedItem();
         if (student != null) {
-            StudentDAO.delete(student);
-            loadTable();
+            try {
+                StudentDAO.delete(student);
+                loadTable();
+            }
+            catch (SQLException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Deleting");
+                alert.setHeaderText("Student with records!");
+                alert.setContentText("Delete enrollments made by this student"
+                    + "\nbefore removing him...\n");
+                alert.showAndWait();
+            }
         }
         else {
             noSelectedItemAlert();

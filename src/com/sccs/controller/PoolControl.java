@@ -6,6 +6,7 @@ import com.sccs.model.database.SingletonDatabase;
 import com.sccs.model.domain.SwimmingPool;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
@@ -165,7 +166,11 @@ public class PoolControl implements Initializable {
     public Boolean isValidInput() {
         
         String errorMessage = "";
-        if (nameField.getText().isEmpty() || nameField.getText() == null) {
+        if (
+            nameField.getText().isEmpty() || 
+            nameField.getText() == null ||
+            nameField.getText().length() > 45
+        ) {
             errorMessage += "Invalid Name\n";
         }
         if (ageSpinner.getValue() == null) {
@@ -186,6 +191,28 @@ public class PoolControl implements Initializable {
         if (depthField.getText().isEmpty() || depthField.getText() == null) {
             errorMessage += "Invalid Depth\n";
         }
+        
+        try {
+            Double.valueOf(depthField.getText());
+        }
+        catch (NumberFormatException ex) {
+            errorMessage += "Invalid Depth\n";
+        }
+        
+        try {
+            Double.valueOf(lengthField.getText());
+        }
+        catch (NumberFormatException ex) {
+            errorMessage += "Invalid Lenght\n";
+        }
+        
+        try {
+            Double.valueOf(widthField.getText());
+        }
+        catch (NumberFormatException ex) {
+            errorMessage += "Invalid Width\n";
+        }
+        
         
         if (errorMessage.isEmpty()) {
             return true;
@@ -248,8 +275,17 @@ public class PoolControl implements Initializable {
         
         SwimmingPool pool = table.getSelectionModel().getSelectedItem();
         if (pool != null) {
-            SwimmingPoolDAO.delete(pool);
-            loadTable();
+            try {
+                SwimmingPoolDAO.delete(pool);
+                loadTable();
+            } catch (SQLException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Deleting");
+                alert.setHeaderText("Pool with records!");
+                alert.setContentText("Delete enrollments made by this pool"
+                    + "\nbefore removing him...\n");
+                alert.showAndWait();
+            }
         }
         else {
             noSelectedItemAlert();

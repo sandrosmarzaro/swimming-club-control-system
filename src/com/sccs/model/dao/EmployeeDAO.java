@@ -54,14 +54,13 @@ public class EmployeeDAO extends DataAcessObject {
         }
     }
 
-    public static boolean delete(Employee employee) throws SQLException {
+    public static void delete(Employee employee) throws SQLException {
         
         String sql = "DELETE FROM employee WHERE employeeCpf=?";
         
         PreparedStatement statement = connectionDAO.prepareStatement(sql);
         statement.setString(1, employee.getCpf());
         statement.execute();
-        return true;
     }
 
     public static List<Employee> list() {

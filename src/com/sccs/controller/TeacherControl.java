@@ -6,8 +6,10 @@ import com.sccs.model.database.SingletonDatabase;
 import com.sccs.model.domain.Teacher;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -95,10 +97,18 @@ public class TeacherControl implements Initializable {
     public Boolean isValidInput() {
         
         String errorMessage = "";
-        if (nameField.getText().isEmpty() || nameField.getText() == null) {
+        if (
+            nameField.getText().isEmpty() || 
+            nameField.getText() == null ||
+            nameField.getText().length() > 45
+        ) {
             errorMessage += "Invalid Name\n";
         }
-        if (cpfField.getText().isEmpty() || cpfField.getText() == null) {
+        if (
+            cpfField.getText().isEmpty() ||
+            cpfField.getText() == null ||
+            !Pattern.matches("^[0-9]{11}$", cpfField.getText())
+        ) {
             errorMessage += "Invalid CPF\n";
         }
         
@@ -153,8 +163,17 @@ public class TeacherControl implements Initializable {
         
         Teacher teacher = tableView.getSelectionModel().getSelectedItem();
         if (teacher != null) {
-            TeacherDAO.delete(teacher);
-            loadTableView();
+            try {
+                TeacherDAO.delete(teacher);
+                loadTableView();
+            } catch (SQLException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Deleting");
+                alert.setHeaderText("Teacher with records!");
+                alert.setContentText("Delete enrollments made by this teacher"
+                    + "\nbefore removing him...\n");
+                alert.showAndWait();
+            }
         }
         else {
             noSelectedItemAlert();

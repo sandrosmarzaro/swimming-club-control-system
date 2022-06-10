@@ -49,19 +49,12 @@ public class StudentDAO extends DataAcessObject {
         }
     }
 
-    public static boolean delete(Student student) {
+    public static void delete(Student student) throws SQLException {
 
         String sql = "DELETE FROM student WHERE studentCpf=?";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setString(1, student.getCpf());
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setString(1, student.getCpf());
+        statement.execute();
     }
 
     public static List<Student> list() {

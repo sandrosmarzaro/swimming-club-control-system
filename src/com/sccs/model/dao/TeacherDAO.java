@@ -44,19 +44,12 @@ public class TeacherDAO extends DataAcessObject {
         }
     }
 
-    public static boolean delete(Teacher teacher) {
+    public static void delete(Teacher teacher) throws SQLException {
 
         String sql = "DELETE FROM teacher WHERE teacherCpf=?";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setString(1, teacher.getCpf());
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(TeacherDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setString(1, teacher.getCpf());
+        statement.execute();
     }
 
     public static List<Teacher> list() {

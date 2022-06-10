@@ -35,6 +35,7 @@ public class ClassroomDAO extends DataAcessObject {
     }
 
     public static boolean update(Classroom classroom) {
+        
         String sql = "UPDATE classroom SET " +
                 "className=?, usedPool=?, enrollmentOpen=?, " +
                 "teacher=?, dayOfTheWeek=?::day_of_the_week " +
@@ -56,19 +57,12 @@ public class ClassroomDAO extends DataAcessObject {
         }
     }
 
-    public static boolean delete(Classroom classroom) {
+    public static void delete(Classroom classroom) throws SQLException {
 
         String sql = "DELETE FROM classroom WHERE classroomId=?";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setInt(1, classroom.getId());
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(ClassroomDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setInt(1, classroom.getId());
+        statement.execute();
     }
 
     public static List<Classroom> list() {
@@ -98,6 +92,7 @@ public class ClassroomDAO extends DataAcessObject {
     }
     
     public static List<String> listNames() {
+        
         String sql = "SELECT className FROM classroom;";
         List<String> namesList = new ArrayList<>();
         try {
