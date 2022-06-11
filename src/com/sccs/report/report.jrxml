@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="af558433-937a-410b-ab8a-faf79b490f88">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sccs-adapter"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="267"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="722"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="581"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="405"/>
+	<parameter name="dayOfWeek" class="java.lang.String">
+		<parameterDescription><![CDATA[Day Of The Week]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+  COUNT(enroll.enrollid) AS studentsQuantity,
+  SUM (classroom.vacanciesnumber) AS vacanciesQuantity,
+  TRUNC (AVG (pool.averageage), 2) AS averageAge,
+  classroom.dayoftheweek AS dayWeek
+FROM
+  enroll
+  INNER JOIN classroom ON enroll.classid = classroom.classroomid
+  INNER JOIN swimmingpool pool ON classroom.usedpool = pool.poolnumber
+  WHERE classroom.dayoftheweek::TEXT = $P{dayOfWeek}
+GROUP BY
+  classroom.dayoftheweek]]>
+	</queryString>
+	<field name="studentsquantity" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="studentsquantity"/>
+		<property name="com.jaspersoft.studio.field.label" value="studentsquantity"/>
+	</field>
+	<field name="vacanciesquantity" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="vacanciesquantity"/>
+		<property name="com.jaspersoft.studio.field.label" value="vacanciesquantity"/>
+	</field>
+	<field name="averageage" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="averageage"/>
+		<property name="com.jaspersoft.studio.field.label" value="averageage"/>
+	</field>
+	<field name="dayweek" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dayweek"/>
+		<property name="com.jaspersoft.studio.field.label" value="dayweek"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="classroom"/>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="8ccae4d5-ae88-41c6-a1e0-5b1b8301468d"/>
+				<staticText>
+					<reportElement x="90" y="20" width="170" height="60" forecolor="#FFFFFF" uuid="1c2a7c2f-2926-45a9-8d6e-09eacdf16877"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SCCS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="310" y="30" width="275" height="50" forecolor="#FFFFFF" uuid="c40bb844-06de-4600-a235-1cf40d182d4c"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Student count reports, sum of seats and average age, filtered by day of the week]]></text>
+				</staticText>
+				<image>
+					<reportElement x="9" y="20" width="71" height="60" forecolor="#FFFFFF" backcolor="rgba(255, 255, 255, 0.0)" uuid="cff69b20-c88e-4e2f-b40f-01825cea2378"/>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
+					<imageExpression><![CDATA["/home/sandro/NetBeansProjects/sccs/src/com/sccs/view/images/logo.png"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="987e0e28-18b6-40a0-9023-712bb15e9e46"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b8456980-bc08-488b-b31c-3ec387290564">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8769f294-1854-412c-ba8f-796ebfff6522"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Students Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="78cd27a4-c439-4b26-acd0-bf2a33106133">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d3388800-5427-4e49-93d5-927027c850e0"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vacancies Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c3436427-d7a9-47dc-8ded-dd4d8df2f0cb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="962be6a7-b782-4f6c-bace-2512091b1655"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Average Age]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a4ff4881-275a-4d03-a195-9411a1907e1a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e8feb7b-f859-48b6-b032-4de4919d2e0c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Day Of The Week]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="6f80075d-3c69-4d7a-87fc-d64560726ed2"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="138" height="20" uuid="be40bfcd-4f9b-447f-b3e1-c814a31878ea">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8769f294-1854-412c-ba8f-796ebfff6522"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{studentsquantity}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="138" y="0" width="138" height="20" uuid="819c1018-3a0d-4101-ae86-33903b0cd8ae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d3388800-5427-4e49-93d5-927027c850e0"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vacanciesquantity}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="276" y="0" width="138" height="20" uuid="b6dda984-9945-422a-99d4-e7ef20955f02">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="962be6a7-b782-4f6c-bace-2512091b1655"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{averageage}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="414" y="0" width="138" height="20" uuid="3fed6451-332d-4e79-9393-0c42a87186a3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e8feb7b-f859-48b6-b032-4de4919d2e0c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dayweek}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="1a5a5f01-6b8b-4ff5-8500-aa3434926f98"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="34d519cb-ae90-4076-b3d9-70e8ce0f1d15"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="a8c1db23-ae06-4e5f-9f81-dea471588b73"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
