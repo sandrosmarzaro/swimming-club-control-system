@@ -94,10 +94,21 @@ public class EmployeeControl implements Initializable {
     
     @FXML
     public void noSelectedItemAlert() {
+        
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Employee not selected!");
         alert.setContentText("Choose a valid employee from the list...");
+        alert.showAndWait();
+    }
+    
+    @FXML
+    public void duplicateLoginOrCPFAlert() {
+        
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Adding");
+        alert.setHeaderText("Invalid Fields!");
+        alert.setContentText("Repeated CPF or Login, check and enter again...\n");
         alert.showAndWait();
     }
     
@@ -135,7 +146,7 @@ public class EmployeeControl implements Initializable {
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Adding");
+            alert.setTitle("Error");
             alert.setHeaderText("Invalid Fields!");
             alert.setContentText("Enter all required fields to add an employee...\n" + errorMessage);
             alert.showAndWait();
@@ -153,8 +164,13 @@ public class EmployeeControl implements Initializable {
                 loginText.getText(),
                 passwordText.getText()
             );
-            EmployeeDAO.insert(employee);
-            loadTableView();
+            try {
+                EmployeeDAO.insert(employee);
+                loadTableView();
+            }
+            catch (SQLException ex) {
+                duplicateLoginOrCPFAlert();
+            }
         }
     }
     
@@ -171,11 +187,16 @@ public class EmployeeControl implements Initializable {
                     loginText.getText(),
                     passwordText.getText()
                 );
-                EmployeeDAO.update(employee);
-                loadTableView();
+                try {
+                    EmployeeDAO.update(employee);
+                    loadTableView();
+                }
+                catch (SQLException ex) {
+                    duplicateLoginOrCPFAlert();
+                }
             }
             else {
-                
+                noSelectedItemAlert();
             }
         }
     }

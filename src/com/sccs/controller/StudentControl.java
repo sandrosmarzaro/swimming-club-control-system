@@ -104,6 +104,16 @@ public class StudentControl implements Initializable {
     }
     
     @FXML
+    public void duplicateCPFAlert() {
+        
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("CPF Error");
+        alert.setHeaderText("Duplicate CPF!");
+        alert.setContentText("Repeated CPF, enter another...");
+        alert.showAndWait();
+    }
+    
+    @FXML
     public Boolean isValidInput() {
         
         String errorMessage = "";
@@ -124,16 +134,6 @@ public class StudentControl implements Initializable {
         if (birthDate.getValue() == null) {
             errorMessage += "Invalid Date\n";
         }
-        
-        try {
-            LocalDate.parse(birthDate.toString());
-        }
-        catch (DateTimeParseException ex) {
-            if (!errorMessage.contains("Invalid Date")) {
-                errorMessage += "Invalid Date\n";
-            }
-        }
-        
         
         if (errorMessage.isEmpty()) {
             return true;
@@ -157,8 +157,13 @@ public class StudentControl implements Initializable {
                 nameField.getText(),
                 birthDate.getValue()
             );
-            StudentDAO.insert(student);
-            loadTable();
+            try {
+                StudentDAO.insert(student);
+                loadTable();
+            }
+            catch (SQLException ex) {
+                duplicateCPFAlert();
+            }
         }
     }
     
@@ -174,8 +179,13 @@ public class StudentControl implements Initializable {
                     nameField.getText(),
                     birthDate.getValue()
                 );
-                StudentDAO.update(student);
-                loadTable();
+                try {
+                    StudentDAO.update(student);
+                    loadTable();
+                }
+                catch (SQLException ex) {
+                    duplicateCPFAlert();
+                }
             }
             else {
                 noSelectedItemAlert();

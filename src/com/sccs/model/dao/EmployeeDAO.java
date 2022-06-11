@@ -14,44 +14,30 @@ import java.util.logging.Logger;
 
 public class EmployeeDAO extends DataAcessObject {
 
-    public static boolean insert(Employee employee) {
+    public static void insert(Employee employee) throws SQLException {
         
         String sql = "INSERT INTO employee(" +
             "employeeCpf, employeeName, employeeLogin, employeePassword) " +
             "VALUES(?, ?, ?, ?)";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setString(1, employee.getCpf());
-            statement.setString(2, employee.getName());
-            statement.setString(3, employee.getLogin());
-            String encryptedPassword = Encryptor.encryptPassword(employee.getPassword());
-            statement.setString(4, encryptedPassword);
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setString(1, employee.getCpf());
+        statement.setString(2, employee.getName());
+        statement.setString(3, employee.getLogin());
+        String encryptedPassword = Encryptor.encryptPassword(employee.getPassword());
+        statement.setString(4, encryptedPassword);
+        statement.execute();
     }
 
-    public static boolean update(Employee employee) {
+    public static void update(Employee employee) throws SQLException {
         
         String sql = "UPDATE employee SET employeeCpf=?, employeeName=?, "
             + "employeeLogin=? WHERE employeeId=?";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setString(1, employee.getCpf());
-            statement.setString(2, employee.getName());
-            statement.setString(3, employee.getLogin());
-            statement.setInt(4, employee.getId());
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setString(1, employee.getCpf());
+        statement.setString(2, employee.getName());
+        statement.setString(3, employee.getLogin());
+        statement.setInt(4, employee.getId());
+        statement.execute();
     }
 
     public static void delete(Employee employee) throws SQLException {

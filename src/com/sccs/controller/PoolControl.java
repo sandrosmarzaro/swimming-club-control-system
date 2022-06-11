@@ -157,7 +157,7 @@ public class PoolControl implements Initializable {
         
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
-        alert.setHeaderText("Student not selected!");
+        alert.setHeaderText("Pool not selected!");
         alert.setContentText("Choose a valid pool from the list...");
         alert.showAndWait();
     }

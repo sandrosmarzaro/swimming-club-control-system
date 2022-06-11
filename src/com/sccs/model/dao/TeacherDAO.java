@@ -11,37 +11,23 @@ import java.util.logging.Logger;
 
 public class TeacherDAO extends DataAcessObject {
 
-    public static boolean insert(Teacher teacher) {
+    public static void insert(Teacher teacher) throws SQLException {
 
         String sql = "INSERT INTO teacher(teacherCpf, teacherName) VALUES(?, ?)";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setString(1, teacher.getCpf());
-            statement.setString(2, teacher.getName());
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(TeacherDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setString(1, teacher.getCpf());
+        statement.setString(2, teacher.getName());
+        statement.execute();
     }
 
-    public static boolean update(Teacher teacher) {
+    public static void update(Teacher teacher) throws SQLException {
 
         String sql = "UPDATE teacher SET teacherCpf=?, teacherName=? WHERE teacherId=?";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setString(1, teacher.getCpf());
-            statement.setString(2, teacher.getName());
-            statement.setInt(3, teacher.getId());
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(TeacherDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setString(1, teacher.getCpf());
+        statement.setString(2, teacher.getName());
+        statement.setInt(3, teacher.getId());
+        statement.execute();
     }
 
     public static void delete(Teacher teacher) throws SQLException {
@@ -62,9 +48,9 @@ public class TeacherDAO extends DataAcessObject {
 
             while (resultSet.next()) {
                 Teacher teacher = new Teacher(
-                        resultSet.getInt("teacherId"),
-                        resultSet.getString("teacherCpf"),
-                        resultSet.getString("teacherName")
+                    resultSet.getInt("teacherId"),
+                    resultSet.getString("teacherCpf"),
+                    resultSet.getString("teacherName")
                 );
                 teacherList.add(teacher);
             }
@@ -84,9 +70,9 @@ public class TeacherDAO extends DataAcessObject {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new Teacher(
-                        resultSet.getInt("teacherId"),
-                        resultSet.getString("teacherCpf"),
-                        resultSet.getString("teacherName")
+                    resultSet.getInt("teacherId"),
+                    resultSet.getString("teacherCpf"),
+                    resultSet.getString("teacherName")
                 );
             }
         }

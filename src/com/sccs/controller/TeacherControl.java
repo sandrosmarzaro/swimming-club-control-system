@@ -94,6 +94,16 @@ public class TeacherControl implements Initializable {
     }
     
     @FXML
+    public void duplicateCPFAlert() {
+        
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("CPF Error");
+        alert.setHeaderText("Duplicate CPF!");
+        alert.setContentText("Repeated CPF, enter another...");
+        alert.showAndWait();
+    }
+    
+    @FXML
     public Boolean isValidInput() {
         
         String errorMessage = "";
@@ -133,8 +143,13 @@ public class TeacherControl implements Initializable {
                 cpfField.getText(),
                 nameField.getText()
             );
-            TeacherDAO.insert(teacher);
-            loadTableView();
+            try {
+                TeacherDAO.insert(teacher);
+                loadTableView();
+            }
+            catch (SQLException ex) {
+                duplicateCPFAlert();
+            }
         }
     }
     
@@ -149,8 +164,13 @@ public class TeacherControl implements Initializable {
                     cpfField.getText(),
                     nameField.getText()
                 );
-                TeacherDAO.update(teacher);
-                loadTableView();
+                try {
+                    TeacherDAO.update(teacher);
+                    loadTableView();
+                }
+                catch (SQLException ex) {
+                    duplicateCPFAlert();
+                }
             }
             else {
                 noSelectedItemAlert();

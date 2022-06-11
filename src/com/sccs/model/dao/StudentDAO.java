@@ -12,41 +12,27 @@ import java.util.logging.Logger;
 
 public class StudentDAO extends DataAcessObject {
 
-    public static boolean insert(Student student) {
+    public static void insert(Student student) throws SQLException {
 
         String sql = "INSERT INTO student(studentCpf, studentName, birthDate, age) VALUES(?, ?, ?, ?)";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setString(1, student.getCpf());
-            statement.setString(2, student.getName());
-            statement.setDate(3, Date.valueOf(student.getBirthDate()));
-            statement.setInt(4, student.getAge());
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setString(1, student.getCpf());
+        statement.setString(2, student.getName());
+        statement.setDate(3, Date.valueOf(student.getBirthDate()));
+        statement.setInt(4, student.getAge());
+        statement.execute();
     }
 
-    public static boolean update(Student student) {
+    public static void update(Student student) throws SQLException {
 
         String sql = "UPDATE student SET studentCpf=?, studentName=?, birthDate=?, age=? WHERE studentId=?";
-        try {
-            PreparedStatement statement = connectionDAO.prepareStatement(sql);
-            statement.setString(1, student.getCpf());
-            statement.setString(2, student.getName());
-            statement.setDate(3, Date.valueOf(student.getBirthDate()));
-            statement.setInt(4, student.getAge());
-            statement.setInt(5, student.getId());
-            statement.execute();
-            return true;
-        }
-        catch (SQLException sqlException) {
-            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, sqlException);
-            return false;
-        }
+        PreparedStatement statement = connectionDAO.prepareStatement(sql);
+        statement.setString(1, student.getCpf());
+        statement.setString(2, student.getName());
+        statement.setDate(3, Date.valueOf(student.getBirthDate()));
+        statement.setInt(4, student.getAge());
+        statement.setInt(5, student.getId());
+        statement.execute();
     }
 
     public static void delete(Student student) throws SQLException {
