@@ -171,6 +171,17 @@ public class EnrollControl implements Initializable {
     }
     
     @FXML
+    public void alreadyEnrolledAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Adding");
+        alert.setHeaderText("Student is already enrolled!");
+        String contentMessage = "It is not possible for the student to have two\n"
+            + "enrollments in the same class.\n";
+        alert.setContentText(contentMessage);
+        alert.showAndWait();
+    }
+    
+    @FXML
     public void closeClassAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error Adding");
@@ -225,23 +236,32 @@ public class EnrollControl implements Initializable {
                 )
                 .getAverageAge()
             );
-            if (isNotAboveAverage) {
-                if (classCombo.getValue().getEnrollmentOpen()) {
-                    if (ClassroomDAO.hasVacancy(classCombo.getValue().getId())) {
-                        EnrollDAO.insert(enroll);
-                        ClassroomDAO.decreaseVacancies(enroll.getClassId());
-                        loadTable();
+            Boolean isAlreadyEnrolled = EnrollDAO.isAlreadyEnrolled(
+                studentCombo.getValue().getId(),
+                classCombo.getValue().getId()
+            );
+            if (!isAlreadyEnrolled) {
+                if (isNotAboveAverage) {
+                    if (classCombo.getValue().getEnrollmentOpen()) {
+                        if (ClassroomDAO.hasVacancy(classCombo.getValue().getId())) {
+                            EnrollDAO.insert(enroll);
+                            ClassroomDAO.decreaseVacancies(enroll.getClassId());
+                            loadTable();
+                        }
+                        else {
+                            noVacanciesAvailableAlert(); 
+                        }
                     }
                     else {
-                        noVacanciesAvailableAlert(); 
+                        closeClassAlert();
                     }
                 }
                 else {
-                    closeClassAlert();
+                    ageExceedsAlert();
                 }
             }
             else {
-                ageExceedsAlert();
+                alreadyEnrolledAlert();
             }
         }
     }

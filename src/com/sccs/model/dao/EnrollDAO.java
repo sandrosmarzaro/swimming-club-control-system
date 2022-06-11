@@ -165,4 +165,29 @@ public class EnrollDAO extends DataAcessObject {
        }
        return false;
     }
+    
+    public static Boolean isAlreadyEnrolled(Integer studentId, Integer classId) {
+        
+        String sql = "SELECT enroll.enrollid FROM enroll\n" +
+            "INNER JOIN student ON enroll.student = student.studentid\n" +
+            "INNER JOIN classroom ON  enroll.classid = classroom.classroomid\n" +
+            "WHERE student.studentid = ?\n" +
+            "AND classroom.classroomid = ?;";
+        try {
+            PreparedStatement statement = connectionDAO.prepareStatement(sql);
+            statement.setInt(1, studentId);
+            statement.setInt(2, classId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch (SQLException sqlException) {
+            Logger.getLogger(EnrollDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+        return false;
+    }
 }

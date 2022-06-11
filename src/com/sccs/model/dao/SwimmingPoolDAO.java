@@ -14,8 +14,8 @@ public class SwimmingPoolDAO extends DataAcessObject {
     public static boolean insert(SwimmingPool pool) {
 
         String sql = "INSERT INTO swimmingPool(poolName, averageAge, maxCapacity," +
-                " lanesNumber, poolWidth, poolLength, poolDepth)" +
-                " VALUES(?, ?, ?, ?, ?, ?, ?)";
+            " lanesNumber, poolWidth, poolLength, poolDepth)" +
+            " VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, pool.getName());
@@ -36,8 +36,8 @@ public class SwimmingPoolDAO extends DataAcessObject {
 
     public static boolean update(SwimmingPool pool) {
         String sql = "UPDATE swimmingPool SET " +
-                "poolName=?, averageAge=?, maxCapacity=?, lanesNumber=?, " +
-                "poolWidth=?, poolLength=?, poolDepth=? WHERE poolNumber=?";
+            "poolName=?, averageAge=?, maxCapacity=?, lanesNumber=?, " +
+            "poolWidth=?, poolLength=?, poolDepth=? WHERE poolNumber=?";
         try {
             PreparedStatement statement = connectionDAO.prepareStatement(sql);
             statement.setString(1, pool.getName());
@@ -75,14 +75,14 @@ public class SwimmingPoolDAO extends DataAcessObject {
 
             while (resultSet.next()) {
                 SwimmingPool pool = new SwimmingPool(
-                        resultSet.getInt("poolNumber"),
-                        resultSet.getString("poolName"),
-                        resultSet.getInt("averageAge"),
-                        resultSet.getInt("maxCapacity"),
-                        resultSet.getInt("lanesNumber"),
-                        resultSet.getDouble("poolWidth"),
-                        resultSet.getDouble("poolLength"),
-                        resultSet.getDouble("poolDepth")
+                    resultSet.getInt("poolNumber"),
+                    resultSet.getString("poolName"),
+                    resultSet.getInt("averageAge"),
+                    resultSet.getInt("maxCapacity"),
+                    resultSet.getInt("lanesNumber"),
+                    resultSet.getDouble("poolWidth"),
+                    resultSet.getDouble("poolLength"),
+                    resultSet.getDouble("poolDepth")
                 );
                 poolList.add(pool);
             }
@@ -102,14 +102,14 @@ public class SwimmingPoolDAO extends DataAcessObject {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return new SwimmingPool(
-                        resultSet.getInt("poolNumber"),
-                        resultSet.getString("poolName"),
-                        resultSet.getInt("averageAge"),
-                        resultSet.getInt("maxCapacity"),
-                        resultSet.getInt("lanesNumber"),
-                        resultSet.getDouble("poolWidth"),
-                        resultSet.getDouble("poolLength"),
-                        resultSet.getDouble("poolDepth")
+                    resultSet.getInt("poolNumber"),
+                    resultSet.getString("poolName"),
+                    resultSet.getInt("averageAge"),
+                    resultSet.getInt("maxCapacity"),
+                    resultSet.getInt("lanesNumber"),
+                    resultSet.getDouble("poolWidth"),
+                    resultSet.getDouble("poolLength"),
+                    resultSet.getDouble("poolDepth")
                 );
             }
         }
