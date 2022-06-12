@@ -32,7 +32,7 @@
     <jar href="lib/spring-beans-5.2.22.RELEASE.jar" size="689248" download="eager" />
     <jar href="lib/spring-core-5.2.22.RELEASE.jar" size="1447596" download="eager" />
     <jar href="lib/spring-jcl-5.2.22.RELEASE.jar" size="23961" download="eager" />
-    <jar href="sccs.jar" size="362523" download="eager" />
+    <jar href="sccs.jar" size="362581" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="sccs" >
     <param name="requiredFXVersion" value="8.0+"/>

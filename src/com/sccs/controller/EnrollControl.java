@@ -284,10 +284,12 @@ public class EnrollControl implements Initializable {
                     SwimmingPoolDAO.search(classCombo.getValue().getPoolId()).getAverageAge()
                 );
                 if (isNotAboveAverage) {
-                    if (enroll.getClassId() != EnrollDAO.search(enroll.getId()).getClassId()) {
+                    Integer oldClassId = EnrollDAO.search(enroll.getId()).getClassId();
+                    if (enroll.getClassId() != oldClassId) {
                         if (classCombo.getValue().getEnrollmentOpen()) {
                             if (ClassroomDAO.hasVacancy(enroll.getClassId())) {
                                 ClassroomDAO.decreaseVacancies(enroll.getClassId());
+                                ClassroomDAO.increaseVacancies(oldClassId);
                                 EnrollDAO.update(enroll);
                                 loadTable();
                             }
