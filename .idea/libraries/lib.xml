@@ -1,0 +1,33 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-custom-visualization-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-digester-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-fonts-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-jcl-5.2.22.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-beans-5.2.22.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-collections4-4.4-test-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-annotation-processors-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-chart-customizers-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jfoenix-8.0.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/lombok-1.18.24.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-collections4-4.4-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-core-5.2.22.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-collections4-4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-castor-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-collections4-4.4-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-chart-themes-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasypt-1.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-javaflow-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-collections4-4.4-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/postgresql-42.3.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-metadata-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasperreports-functions-6.19.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2-javadoc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

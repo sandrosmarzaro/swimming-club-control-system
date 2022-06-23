@@ -1,5 +1,8 @@
 package com.sccs.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import com.sccs.App;
 import com.sccs.model.dao.EmployeeDAO;
 import com.sccs.model.database.Database;
@@ -12,19 +15,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-
 
 public class LoginControl implements Initializable {
     
     @FXML
-    private TextField loginField;
+    private JFXTextField loginField;
     @FXML
-    private PasswordField passwordField;
+    private JFXPasswordField passwordField;
     @FXML
-    private Button signInButton;
+    private JFXButton signInButton;
     
     private final Database database = SingletonDatabase.getDatabase("postgresql");
     private final Connection connection = database.connect();

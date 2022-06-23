@@ -1,8 +1,8 @@
-.button {
+.jfx-text-field {
     -fx-background-radius: 6;
 }
 
-.text-field {
+.jfx-password-field {
     -fx-background-radius: 6;
 }
 
@@ -13,11 +13,15 @@
 }
 
 .label {
+    -fx-font-size: 16;
     -fx-font-weight: bold;
     -fx-text-fill: "#083b66";
 }
 
-.button {
+.jfx-button {
+    -jfx-button-type: RAISED;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-text-fill: "#083b66";
+    -fx-background-radius: 6;
+    -fx-background-color: "#083b66";
 }

@@ -99,8 +99,7 @@ CREATE TABLE
     CONSTRAINT pk_enroll PRIMARY KEY (enrollId),
     CONSTRAINT fk_classroom_enroll FOREIGN KEY (classId) REFERENCES classroom(classroomId),
     CONSTRAINT fk_employee_enroll FOREIGN KEY (employee) REFERENCES employee(employeeId),
-    CONSTRAINT fk_student_enroll FOREIGN KEY (student) REFERENCES student(studentId),
-    CONSTRAINT un_student UNIQUE (student)
+    CONSTRAINT fk_student_enroll FOREIGN KEY (student) REFERENCES student(studentId)
   );
 
 INSERT INTO
@@ -127,14 +126,21 @@ VALUES
 INSERT INTO
   teacher (teacherCpf, teacherName)
 VALUES
-  ('22222222222', 'Ciclano'),
-  ('33333333333', 'Beltrano');
+  ('22222222222', 'Beltrano'),
+  ('33333333333', 'Ciclano'),
+  ('44444444444', 'Deltrano'),
+  ('55555555555', 'Euclaciano');
 
 INSERT INTO
   student (studentCpf, studentName, birthDate, age)
 VALUES
-  ('33333333333', 'Euclaciano', '2022-06-06', 23),
-  ('44444444444', 'Deltrano', '1996-02-29', 26);
+  ('66666666666', 'Glauciano', '2012-02-29', 10),
+  ('77777777777', 'Hibriano', '2009-04-01', 13),
+  ('88888888888', 'Iciano', '2015-01-01', 7),
+  ('99999999999', 'Jauciano', '2008-05-31', 14),
+  ('12345678901', 'Kraucinto', '2016-06-01', 6),
+  ('14327650981', 'Lauciano', '2011-05-05', 11),
+  ('10987654321', 'Maucriano', '2000-06-12', 20);
 
 INSERT INTO
   swimmingPool (
@@ -147,8 +153,8 @@ INSERT INTO
     poolDepth
   )
 VALUES
-  ('Olympic', 0, 10, 10, 50.0, 25.0, 3.05),
-  ('Little', 10, 31, 45, 27.9, 13.8, 0.90);
+  ('Olympic', 23, 10, 10, 50.0, 25.0, 3.05),
+  ('Little', 10, 3, 3, 27.9, 13.8, 0.90);
 
 INSERT INTO
   classroom (
@@ -160,11 +166,15 @@ INSERT INTO
     dayOfTheWeek
   )
 VALUES
-  ('Competitive', 1, 10, false, 1, 'FRIDAY'),
-  ('Beginner', 2, 45, true, 2, 'MONDAY');
+  ('Competitive', 1, 10, false, 4, 'FRIDAY'),
+  ('Beginner', 2, 0, false, 2, 'MONDAY'),
+  ('Smaller', 2, 2, true, 1, 'WEDNESDAY');
 
 INSERT INTO
   enroll (classId, employee, student)
 VALUES
-  (1, 1, 1),
-  (2, 2, 2);
+  (1, 1, 7),
+  (2, 2, 1),
+  (2, 2, 2),
+  (2, 2, 3),
+  (3, 2, 6);

@@ -14,10 +14,11 @@ public class App extends Application {
     @Override
     public void start (Stage stage) throws IOException {
 
-       scene = new Scene(loadFXML("view/LoginView"));
+        scene = new Scene(loadFXML("view/LoginView"));
 
         stage.setScene(scene);
         stage.setTitle("Swimming Club Control System");
+        stage.setMaximized(true);
         stage.setResizable(false);
         stage.show();
     }

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sccs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/sccs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
