@@ -1,12 +1,15 @@
-# 🏊🏻 Swimming Club Control System 🏊🏻
+# 🏊🏻 **Swimming Club Control System** 🏊🏻
 
-## 📖 Summary
+## 📖 **Summary**
 1. <a href="What is SCCS">What is SCCS?</a>
-2. <a name="Technologies Used">Technologies Used</a>
+2. <a href="Technologies Used">Technologies Used</a>
+3. <a href="How to Use">How to Use</a>
 
 </br>
 
-## 🤔 What is SCCS? <a name="What is SCCS"></a>
+## 🤔 **What is SCCS?** <a name="What is SCCS"></a>
+
+</br>
 
 * SCCS is a desktop application for enrollment for a swimming club or school, thus registering employees, teachers and students, in addition to the swimming pools of the establishment.
 
@@ -14,7 +17,9 @@
 
 </br>
 
-## 🖥 Technologies Used <a name="Technologies Used"></a>
+## 💻 **Technologies Used** <a name="Technologies Used"></a>
+
+</br>
 
 The technologies used for the construction of the project were the following:
 
@@ -30,3 +35,17 @@ The technologies used for the construction of the project were the following:
 
  * [JasperReport](https://community.jaspersoft.com) for creating reports
 
+ </br>
+
+## 👩‍💻 **How to use?**
+
+</br>
+
+1. Download project or cloning repository with git command: </br>
+&nbsp; `git clone https://github.com/sandrosmarzaro/swimming-club-control-system.git`
+
+2. Create PostgreSQL database with script *database.sql* in sub-directory `/src/com/sccs/script/` inside the project project, having the username and password as *"postgres"*
+
+3. Compile project with Java 8 or superior, using the dependencies jars found in the `/lib/` sub directory
+
+4. Enjoy the system using the default username and password as *"admin"*
