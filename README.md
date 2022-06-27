@@ -1,13 +1,13 @@
 # 🏊🏻 **Swimming Club Control System** 🏊🏻
 
 ## 📖 **Summary**
-1. <a href="What is SCCS">What is SCCS?</a>
-2. <a href="Technologies Used">Technologies Used</a>
-3. <a href="How to Use">How to Use</a>
+1. <a href="#-What is SCCS">What is SCCS?</a>
+2. <a href="#-Technologies Used">Technologies Used</a>
+3. <a href="#-How to Use">How to Use</a>
 
 </br>
 
-## 🤔 **What is SCCS?** <a name="What is SCCS"></a>
+## 🤔 **What is SCCS?** <a id="-What is SCCS"></a>
 
 </br>
 
@@ -17,7 +17,7 @@
 
 </br>
 
-## 💻 **Technologies Used** <a name="Technologies Used"></a>
+## 💻 **Technologies Used** <a id="-Technologies Used"></a>
 
 </br>
 
@@ -37,7 +37,7 @@ The technologies used for the construction of the project were the following:
 
  </br>
 
-## 👩‍💻 **How to use?**
+## 👩‍💻 **How to use?** <a id="-How to Use"></a>
 
 </br>
 
