@@ -1,4 +1,4 @@
-<h1 align="center">🏊🏻 <b>Swimming Club Control System</b> 🏊🏻 </h1>
+<h1 align="center">🏊🏻 <b> Swimming Club Control System </b> 🏊🏻 </h1>
 
 ## 📖 **Summary**
 1. <a href="#-What is SCCS">What is SCCS?</a>
@@ -25,11 +25,9 @@ The technologies used for the construction of the project were the following:
 
 * [Java](https://www.java.com/pt-BR/) as the main language
 
-* [PostgreSQL](https://www.postgresql.org) for data persistence
+* [PostgreSQL](https://www.postgresql.org) with [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/) for data persistence
 
-* [JavaFX](https://openjfx.io) for graphical interface
-
- * [Jfoenix](http://www.jfoenix.com) used to manipulate more elaborate interface elements
+* [JavaFX](https://openjfx.io) for graphical interface with [Jfoenix](http://www.jfoenix.com) to manipulate more elaborate interface elements
 
  * [Jasypt](http://www.jasypt.org) used to encrypt user passwords
 
