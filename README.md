@@ -1,4 +1,4 @@
-# 🏊🏻 **Swimming Club Control System** 🏊🏻
+<h1 align="center">🏊🏻 <b>Swimming Club Control System</b> 🏊🏻 </h1>
 
 ## 📖 **Summary**
 1. <a href="#-What is SCCS">What is SCCS?</a>
