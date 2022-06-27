@@ -23,7 +23,7 @@
 
 The technologies used for the construction of the project were the following:
 
-* [Java](https://www.java.com/pt-BR/) as the main language
+* [Java](https://www.java.com/pt-BR/) as the main language with [Lombok](https://projectlombok.org) to to assist in code generation
 
 * [PostgreSQL](https://www.postgresql.org) with [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/) for data persistence
 
