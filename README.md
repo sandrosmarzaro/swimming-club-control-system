@@ -1,12 +1,14 @@
-<h1 align="center">🏊🏻 <b> Swimming Club Control System </b> 🏊🏻 
+<h1 align="center">🏊🏻 <b> Swimming Club Control System </b> 🏊🏻 </h1>
 
 </br>
 
-<h1 align="center">
-    <img alt="SCCS Logo" src="https://github.com/sandrosmarzaro/swimming-club-control-system/blob/main/src/com/sccs/view/images/logo.png" />
-</h1>
+<div align="center">
+    <img alt="SCCS Logo" src="https://github.com/sandrosmarzaro/swimming-club-control-system/blob/main/src/com/sccs/view/images/logo.png" width="20%" height="20%"/>
+</div>
 
-<div align="left"> 
+</br>
+
+<h1 align="center"> 
 
 ![GitHub search hit counter](https://img.shields.io/github/search/sandrosmarzaro/swimming-club-control-system/count?label=views)
 ![GitHub language count](https://img.shields.io/github/languages/count/sandrosmarzaro/swimming-club-control-system)
@@ -23,7 +25,6 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/sandrosmarzaro/swimming-club-control-system?color=blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/sandrosmarzaro/swimming-club-control-system?color=blue&logoColor=blue)
 ![GitHub last commit](https://img.shields.io/github/last-commit/sandrosmarzaro/swimming-club-control-system?color=blue)
-</div>
 </h1>
 
 ## 📖 **Summary**
