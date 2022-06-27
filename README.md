@@ -1,4 +1,30 @@
-<h1 align="center">🏊🏻 <b> Swimming Club Control System </b> 🏊🏻 </h1>
+<h1 align="center">🏊🏻 <b> Swimming Club Control System </b> 🏊🏻 
+
+</br>
+
+<h1 align="center">
+    <img alt="SCCS Logo" src="https://github.com/sandrosmarzaro/swimming-club-control-system/blob/main/src/com/sccs/view/images/logo.png" />
+</h1>
+
+<div align="left"> 
+
+![GitHub search hit counter](https://img.shields.io/github/search/sandrosmarzaro/swimming-club-control-system/count?label=views)
+![GitHub language count](https://img.shields.io/github/languages/count/sandrosmarzaro/swimming-club-control-system)
+![GitHub repo size](https://img.shields.io/github/repo-size/sandrosmarzaro/swimming-club-control-system?label=size)
+![GitHub issues](https://img.shields.io/github/issues/sandrosmarzaro/swimming-club-control-system?color=blue)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/sandrosmarzaro/swimming-club-control-system?color=blue)
+![GitHub](https://img.shields.io/github/license/sandrosmarzaro/swimming-club-control-system?color=blue)
+
+![GitHub all releases](https://img.shields.io/github/downloads/sandrosmarzaro/swimming-club-control-system/total?color=blue)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/sandrosmarzaro/swimming-club-control-system?color=blue)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/sandrosmarzaro/swimming-club-control-system?color=blue&logoColor=blue)
+
+![GitHub Sponsors](https://img.shields.io/github/sponsors/sandrosmarzaro)
+![GitHub contributors](https://img.shields.io/github/contributors/sandrosmarzaro/swimming-club-control-system?color=blue)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/sandrosmarzaro/swimming-club-control-system?color=blue&logoColor=blue)
+![GitHub last commit](https://img.shields.io/github/last-commit/sandrosmarzaro/swimming-club-control-system?color=blue)
+</div>
+</h1>
 
 ## 📖 **Summary**
 1. <a href="#-What is SCCS">What is SCCS?</a>
