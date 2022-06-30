@@ -30,7 +30,7 @@
 ## 📖 **Summary**
 1. <a href="#-What is SCCS">What is SCCS?</a>
 2. <a href="#-Technologies Used">Technologies Used</a>
-3. <a href="#-How to Use">How to Use</a>
+3. <a href="#-How to Use?">How to Use</a>
 
 </br>
 
@@ -56,7 +56,7 @@ The technologies used for the construction of the project were the following:
 
 * [JavaFX](https://openjfx.io) for graphical interface with [Jfoenix](http://www.jfoenix.com) to manipulate more elaborate interface elements
 
- * [Jasypt](http://www.jasypt.org) used to encrypt user passwords
+ * [Jasypt](http://www.jasypt.org) used to encrypt user passwords in database
 
  * [JasperReport](https://community.jaspersoft.com) for creating reports
 
@@ -69,7 +69,7 @@ The technologies used for the construction of the project were the following:
 1. Download project or cloning repository with git command: </br>
 &nbsp; `git clone https://github.com/sandrosmarzaro/swimming-club-control-system.git`
 
-2. Create PostgreSQL database with script *database.sql* in sub-directory `/src/com/sccs/script/` inside the project project, having the username and password as *"postgres"*
+2. Create PostgreSQL database with script *database.sql* in sub-directory `/src/com/sccs/script/` inside the project, having the username and password as *"postgres"*
 
 3. Compile project with Java 8 or superior, using the dependencies jars found in the `/lib/` sub directory
 
