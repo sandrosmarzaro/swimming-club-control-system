@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.AppControl">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.AppControl">
    <children>
-      <AnchorPane prefHeight="480.0" prefWidth="221.0" stylesheets="@stylesheet/left-app.css">
+      <AnchorPane prefHeight="533.0" prefWidth="227.0" stylesheets="@stylesheet/left-app.css">
          <children>
             <Label fx:id="nameLabel" layoutX="68.0" layoutY="24.0" prefHeight="25.0" prefWidth="144.0" text="employeeName" textAlignment="RIGHT" />
             <Button fx:id="enrollButton" layoutX="-1.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleClickEnroll" prefHeight="51.0" prefWidth="222.0" text="Enroll" />
@@ -20,6 +20,7 @@
             <Button fx:id="employeeButton" layoutY="325.0" mnemonicParsing="false" onAction="#handleClickEmployee" prefHeight="51.0" prefWidth="221.0" text="Employee" />
             <Button fx:id="graphicButton" layoutY="376.0" mnemonicParsing="false" onAction="#handleClickGraphic" prefHeight="51.0" prefWidth="221.0" text="Graphic" />
             <Button fx:id="reportButton" layoutY="427.0" mnemonicParsing="false" onAction="#handleClickReport" prefHeight="53.0" prefWidth="221.0" text="Report" />
+            <Button fx:id="connectionButton" layoutY="478.0" mnemonicParsing="false" onAction="#handleClickConnection" prefHeight="55.0" prefWidth="221.0" text="Connection" />
             <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="4.0" layoutY="70.0" onMouseClicked="#handleClickEnroll" pickOnBounds="true" preserveRatio="true" styleClass="enroll" />
             <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="124.0" onMouseClicked="#handleClickClass" pickOnBounds="true" preserveRatio="true" styleClass="class" />
             <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="176.0" onMouseClicked="#handleClickStudent" pickOnBounds="true" preserveRatio="true" styleClass="student" />
@@ -29,9 +30,10 @@
             <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="5.0" layoutY="380.0" onMouseClicked="#handleClickGraphic" pickOnBounds="true" preserveRatio="true" styleClass="graphic" />
             <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="432.0" onMouseClicked="#handleClickReport" pickOnBounds="true" preserveRatio="true" styleClass="report" />
             <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="4.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="login" />
-            <Separator layoutX="220.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="481.0" prefWidth="6.0" style="-fx-halignment: right; -fx-background-color: lightgray; -fx-padding: 0; -fx-border-width: 0;" />
+            <ImageView fitHeight="52.0" fitWidth="44.0" layoutX="6.0" layoutY="482.0" onMouseClicked="#handleClickConnection" pickOnBounds="true" preserveRatio="true" styleClass="connection" />
+            <Separator layoutX="221.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="534.0" prefWidth="6.0" style="-fx-halignment: right; -fx-background-color: lightgray; -fx-padding: 0; -fx-border-width: 0;" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rightAnchorPane" prefHeight="480.0" prefWidth="429.0" style="-fx-background-color: add8e6;" />
+      <AnchorPane fx:id="rightAnchorPane" prefHeight="533.0" prefWidth="413.0" style="-fx-background-color: add8e6;" />
    </children>
 </HBox>

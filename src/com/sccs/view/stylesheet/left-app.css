@@ -54,3 +54,7 @@
 .image-view.report {
     -fx-image: url("../images/report-icon.png");
 }
+
+.image-view.connection {
+    -fx-image: url("../images/socket-icon.png");
+}
