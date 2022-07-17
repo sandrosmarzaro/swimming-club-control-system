@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="430.0" style="-fx-background-color: add8e6;" stylesheets="@stylesheet/right-app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.ReportControl">
+<AnchorPane id="AnchorPane" prefHeight="533.0" prefWidth="430.0" style="-fx-background-color: add8e6;" stylesheets="@stylesheet/right-app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sccs.controller.ReportControl">
    <children>
       <TableView fx:id="table" layoutX="15.0" layoutY="26.0" prefHeight="345.0" prefWidth="386.0">
         <columns>
@@ -16,9 +16,9 @@
             <TableColumn fx:id="dayColumn" prefWidth="121.66665649414062" text="Day Of The Week" />
         </columns>
       </TableView>
-      <Button fx:id="printButton" layoutX="311.0" layoutY="409.0" mnemonicParsing="false" onAction="#handleClickPrint" prefHeight="30.0" prefWidth="72.0" text="Print" />
-      <Button fx:id="clearButton" layoutX="208.0" layoutY="424.0" mnemonicParsing="false" onAction="#handleClickClear" prefHeight="30.0" prefWidth="72.0" text="Clear" />
-      <ComboBox fx:id="dayCombo" layoutX="33.0" layoutY="410.0" prefWidth="150.0" promptText="Select Day..." />
-      <Button fx:id="refreshButton1" layoutX="208.0" layoutY="386.0" mnemonicParsing="false" onAction="#handleClickRefresh" prefHeight="30.0" prefWidth="72.0" text="Refresh" />
+      <Button fx:id="printButton" layoutX="299.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleClickPrint" prefHeight="30.0" prefWidth="72.0" text="Print" />
+      <Button fx:id="clearButton" layoutX="136.0" layoutY="467.0" mnemonicParsing="false" onAction="#handleClickClear" prefHeight="30.0" prefWidth="72.0" text="Clear" />
+      <ComboBox fx:id="dayCombo" layoutX="33.0" layoutY="410.0" prefHeight="30.0" prefWidth="175.0" promptText="Select Day..." />
+      <Button fx:id="refreshButton1" layoutX="33.0" layoutY="467.0" mnemonicParsing="false" onAction="#handleClickRefresh" prefHeight="30.0" prefWidth="72.0" text="Refresh" />
    </children>
 </AnchorPane>
